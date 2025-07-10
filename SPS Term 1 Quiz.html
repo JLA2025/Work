@@ -1,0 +1,2153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPS Term 1 Interactive Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            padding: 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .week-selector {
+            padding: 30px;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .week-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .week-btn {
+            padding: 15px 20px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 1em;
+        }
+
+        .week-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .week-btn.active {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .quiz-container {
+            padding: 40px;
+            min-height: 500px;
+        }
+
+        .question {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .question.answered {
+            border-left-color: #28a745;
+            background: #f8fff8;
+        }
+
+        .question.incorrect {
+            border-left-color: #dc3545;
+            background: #fff8f8;
+        }
+
+        .question h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            line-height: 1.5;
+        }
+
+        .question-type {
+            background: #667eea;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .question-status {
+            float: right;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .question-status.correct {
+            color: #28a745;
+        }
+
+        .question-status.incorrect {
+            color: #dc3545;
+        }
+
+        .options {
+            display: grid;
+            gap: 12px;
+        }
+
+        .option {
+            padding: 15px 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .option:hover:not(.correct):not(.incorrect) {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .option.selected {
+            border-color: #667eea;
+            background: #667eea;
+            color: white;
+        }
+
+        .option.correct {
+            border-color: #28a745;
+            background: #28a745;
+            color: white;
+        }
+
+        .option.incorrect {
+            border-color: #dc3545;
+            background: #dc3545;
+            color: white;
+        }
+
+        .option.disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .true-false {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .tf-option {
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-align: center;
+            font-size: 1.1em;
+        }
+
+        .tf-option:hover:not(.correct):not(.incorrect) {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .tf-option.selected {
+            border-color: #667eea;
+            background: #667eea;
+            color: white;
+        }
+
+        .tf-option.correct {
+            border-color: #28a745;
+            background: #28a745;
+            color: white;
+        }
+
+        .tf-option.incorrect {
+            border-color: #dc3545;
+            background: #dc3545;
+            color: white;
+        }
+
+        .tf-option.disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .matching-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .matching-column h4 {
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 1.1em;
+        }
+
+        .matching-item {
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .matching-item:hover:not(.disabled) {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .matching-item.selected {
+            border-color: #667eea;
+            background: #667eea;
+            color: white;
+        }
+
+        .matching-item.pair-0 {
+            border-color: #e74c3c;
+            background: #e74c3c;
+            color: white;
+        }
+
+        .matching-item.pair-1 {
+            border-color: #2ecc71;
+            background: #2ecc71;
+            color: white;
+        }
+
+        .matching-item.pair-2 {
+            border-color: #f39c12;
+            background: #f39c12;
+            color: white;
+        }
+
+        .matching-item.pair-3 {
+            border-color: #9b59b6;
+            background: #9b59b6;
+            color: white;
+        }
+
+        .matching-item.correct {
+            border-color: #28a745;
+            background: #28a745;
+            color: white;
+        }
+
+        .matching-item.incorrect {
+            border-color: #dc3545;
+            background: #dc3545;
+            color: white;
+        }
+
+        .matching-item.disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .drag-drop-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .drag-items, .drop-zones {
+            min-height: 200px;
+        }
+
+        .drag-items h4, .drop-zones h4 {
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 1.1em;
+        }
+
+        .drag-item {
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            background: #f0f4ff;
+            cursor: move;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .drag-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .drag-item.dragging {
+            opacity: 0.5;
+        }
+
+        .drag-item.disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        .drop-zone {
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            background: #f8f9fa;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            color: #666;
+        }
+
+        .drop-zone.drag-over {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .drop-zone.filled {
+            border-color: #667eea;
+            background: #667eea;
+            color: white;
+        }
+
+        .drop-zone.correct {
+            border-color: #28a745;
+            background: #28a745;
+            color: white;
+        }
+
+        .drop-zone.incorrect {
+            border-color: #dc3545;
+            background: #dc3545;
+            color: white;
+        }
+
+        .feedback {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feedback.show {
+            opacity: 1;
+        }
+
+        .feedback.correct {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .results {
+            margin-top: 30px;
+            padding: 30px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            border-radius: 15px;
+            color: white;
+            text-align: center;
+        }
+
+        .results h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .score {
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .actions {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1em;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn.secondary {
+            background: #6c757d;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: #e9ecef;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+
+        /* Touch-friendly improvements */
+        .option, .tf-option, .matching-item, .drag-item, .week-btn, .btn {
+            min-height: 44px; /* Apple's recommended touch target size */
+            touch-action: manipulation; /* Prevents zoom on double tap */
+        }
+
+        /* Mobile responsive design */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                margin: 0;
+                border-radius: 15px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+
+            .header {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+                margin-bottom: 8px;
+            }
+
+            .header p {
+                font-size: 0.9em;
+            }
+
+            .week-selector {
+                padding: 20px;
+            }
+
+            .week-buttons {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 10px;
+            }
+
+            .week-btn {
+                padding: 12px 8px;
+                font-size: 0.9em;
+                min-height: 44px;
+            }
+
+            .quiz-container {
+                padding: 20px;
+            }
+
+            .question {
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+
+            .question h3 {
+                font-size: 1.1em;
+                line-height: 1.4;
+            }
+
+            .question-type {
+                font-size: 0.75em;
+                padding: 4px 10px;
+            }
+
+            .question-status {
+                font-size: 1.1em;
+            }
+
+            .options {
+                gap: 10px;
+            }
+
+            .option, .tf-option {
+                padding: 12px 15px;
+                font-size: 0.95em;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+            }
+
+            .true-false {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .tf-option {
+                text-align: center;
+                justify-content: center;
+            }
+
+            .matching-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .matching-item {
+                padding: 12px;
+                font-size: 0.9em;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+            }
+
+            .drag-drop-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .drag-item {
+                padding: 12px;
+                margin-bottom: 8px;
+                font-size: 0.9em;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                cursor: grab;
+            }
+
+            .drag-item:active {
+                cursor: grabbing;
+            }
+
+            .drop-zone {
+                padding: 12px;
+                margin-bottom: 8px;
+                min-height: 50px;
+                font-size: 0.9em;
+                text-align: center;
+            }
+
+            .feedback {
+                padding: 15px;
+                font-size: 0.9em;
+                margin-top: 15px;
+            }
+
+            .results {
+                padding: 20px;
+                margin-top: 20px;
+            }
+
+            .results h3 {
+                font-size: 1.3em;
+            }
+
+            .score {
+                font-size: 1.6em;
+            }
+
+            .actions {
+                margin-top: 20px;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .btn {
+                padding: 12px 20px;
+                font-size: 0.95em;
+                min-height: 44px;
+                margin: 0;
+                width: 100%;
+            }
+
+            .progress-bar {
+                height: 8px;
+                margin-bottom: 15px;
+            }
+        }
+
+        /* Extra small phones */
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.6em;
+            }
+
+            .week-buttons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .week-btn {
+                font-size: 0.85em;
+                padding: 10px 6px;
+            }
+
+            .quiz-container {
+                padding: 15px;
+            }
+
+            .question {
+                padding: 15px;
+            }
+
+            .question h3 {
+                font-size: 1em;
+            }
+
+            .option, .tf-option, .matching-item, .drag-item {
+                font-size: 0.9em;
+                padding: 10px 12px;
+            }
+
+            .drop-zone {
+                font-size: 0.85em;
+                padding: 10px;
+            }
+        }
+
+        /* Landscape phone orientation */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .week-buttons {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .true-false {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .matching-container, .drag-drop-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+            }
+        }
+
+        /* Prevent text selection on interactive elements */
+        .option, .tf-option, .matching-item, .drag-item, .week-btn, .btn {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Improve scrolling on mobile */
+        body {
+            -webkit-overflow-scrolling: touch;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>SPS Term 1 Interactive Quiz</h1>
+            <p>Test your knowledge across all 8 weeks of the course - Questions marked instantly!</p>
+        </div>
+
+        <div class="week-selector">
+            <div class="week-buttons">
+                <button class="week-btn active" data-week="1">Week 1</button>
+                <button class="week-btn" data-week="2">Week 2</button>
+                <button class="week-btn" data-week="3">Week 3</button>
+                <button class="week-btn" data-week="4">Week 4</button>
+                <button class="week-btn" data-week="5">Week 5</button>
+                <button class="week-btn" data-week="6">Week 6</button>
+                <button class="week-btn" data-week="7">Week 7</button>
+                <button class="week-btn" data-week="8">Week 8</button>
+            </div>
+        </div>
+
+        <div class="quiz-container">
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 0%"></div>
+            </div>
+            <div id="quiz-content"></div>
+            <div class="actions">
+                <button class="btn" id="summary-btn">View Summary</button>
+                <button class="btn secondary" id="reset-btn">Reset Quiz</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const quizData = {
+            1: {
+                title: "Globalism and Nationalism",
+                questions: [
+                    {
+                        type: "mcq",
+                        question: "According to Benedict Anderson, nations are best described as:",
+                        options: [
+                            "Natural geographical boundaries",
+                            "Imagined communities",
+                            "Economic trading blocs",
+                            "Religious organisations"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        type: "true-false",
+                        question: "Ernest Gellner believed that nations created nationalism, rather than nationalism creating nations.",
+                        correct: false
+                    },
+                    {
+                        type: "matching",
+                        question: "Match the theorist to their key concept:",
+                        pairs: [
+                            { left: "Benedict Anderson", right: "Imagined communities" },
+                            { left: "Ernest Gellner", right: "Industrial society needs" },
+                            { left: "Edward Said", right: "Defining by difference" },
+                            { left: "Yuval Harari", right: "Modern globalism tensions" }
+                        ]
+                    },
+                    {
+                        type: "mcq",
+                        question: "Cultural homogenisation refers to:",
+                        options: [
+                            "Preserving local traditions",
+                            "Local cultures becoming more like global cultures",
+                            "Strengthening national identities",
+                            "Reducing international trade"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        type: "true-false",
+                        question: "Sovereignty means that a country has the right to govern itself.",
+                        correct: true
+                    },
+                    {
+                        type: "mcq",
+                        question: "Brexit was studied as an example of:",
+                        options: [
+                            "Successful globalisation",
+                            "Tension between nationalism and globalism",
+                            "Cultural homogenisation",
+                            "Economic cooperation"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        type: "drag-drop",
+                        question: "Drag the concepts to their correct definitions:",
+                        items: [
+                            { id: "nation", text: "Nation" },
+                            { id: "nationalism", text: "Nationalism" },
+                            { id: "globalism", text: "Globalism" },
+                            { id: "sovereignty", text: "Sovereignty" }
+                        ],
+                        zones: [
+                            { id: "nation", text: "A group sharing history, language, and culture" },
+                            { id: "nationalism", text: "Belief cultural groups should have own countries" },
+                            { id: "globalism", text: "Increasing global interconnection" },
+                            { id: "sovereignty", text: "Right to self-governance" }
+                        ]
+                    },
+                    {
+                        type: "mcq",
+                        question: "According to Anderson, nations exist because:",
+                        options: [
+                            "They are natural geographical units",
+                            "People believe in them",
+                            "They are economically necessary",
+                            "They are required by law"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        type: "true-false",
+                        question: "Newspapers and books help people feel they belong to the same national group.",
+                        correct: true
+                    },
+                    {
+                        type: "mcq",
+                        question: "The tension between nationalism and globalism affects:",
+                        options: [
+                            "Only European countries",
+                            "Only developing nations",
+                            "Countries everywhere",
+                            "Only island nations"
+                        ],
+                        correct: 2
+                    }
+                ]
+            },
+            2: {
+                title: "Population and Stratification",
+                questions: [
+                    {
+                        type: "mcq",
+                        question: "The demographic transition model has how many stages?",
+                        options: ["Two", "Three", "Four", "Five"],
+                        correct: 2
+                    },
+                    {
+                        type: "true-false",
+                        question: "In the first stage of demographic transition, both birth and death rates are high.",
+                        correct: true
+                    },
+                    {
+                        type: "matching",
+                        question: "Match the theorist to their view of social class:",
+                        pairs: [
+                            { left: "Karl Marx", right: "Two main classes in conflict" },
+                            { left: "Max Weber", right: "Three types of inequality" },
+                            { left: "Bourgeoisie", right: "Own businesses" },
+                            { left: "Proletariat", right: "Sell their labour" }
+                        ]
+                    },
+                    {
+                        type: "drag-drop",
+                        question: "Drag the demographic transition stages to their characteristics:",
+                        items: [
+                            { id: "stage1", text: "Stage 1" },
+                            { id: "stage2", text: "Stage 2" },
+                            { id: "stage3", text: "Stage 3" },
+                            { id: "stage4", text: "Stage 4" }
+                        ],
+                        zones: [
+                            { id: "stage1", text: "High birth and death rates" },
+                            { id: "stage2", text: "Death rates fall, birth rates high" },
+                            { id: "stage3", text: "Birth rates start to fall" },
+                            { id: "stage4", text: "Both rates low" }
+                        ]
+                    },
+                    {
+                        type: "mcq",
+                        question: "Weber's three types of inequality are:",
+                        options: [
+                            "Class, status, and power",
+                            "Rich, middle, and poor",
+                            "Urban, rural, and suburban",
+                            "Young, middle-aged, and old"
+                        ],
+                        correct: 0
+                    },
+                    {
+                        type: "true-false",
+                        question: "Resource depletion occurs when populations use resources faster than they can be replaced.",
+                        correct: true
+                    },
+                    {
+                        type: "mcq",
+                        question: "Urbanisation means:",
+                        options: [
+                            "Building more factories",
+                            "People moving from rural areas to cities",
+                            "Increasing birth rates",
+                            "Developing technology"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        type: "true-false",
+                        question: "Marx believed that social classes could easily move between different groups.",
+                        correct: false
+                    },
+                    {
+                        type: "mcq",
+                        question: "Food security means:",
+                        options: [
+                            "Storing food safely",
+                            "Having enough food for everyone",
+                            "Protecting crops from pests",
+                            "Regulating food prices"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        type: "matching",
+                        question: "Match the terms to their definitions:",
+                        pairs: [
+                            { left: "Migration", right: "Moving for better opportunities" },
+                            { left: "Urbanisation", right: "Moving from rural to urban areas" },
+                            { left: "Social stratification", right: "Division into different groups" },
+                            { left: "Food security", right: "Having enough food for all" }
+                        ]
+                    }
+                ]
+            },
+            3: {
+                title: "Social Stratification Theories",
+                questions: [
+                    {
+                        type: "mcq",
+                        question: "Marx's 'means of production' refers to:",
+                        options: [
+                            "Workers' wages",
+                            "Tools and resources used to make goods",
+                            "Government policies",
+                            "Consumer demand"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        type: "true-false",
+                        question: "Class consciousness means workers understanding their shared interests.",
+                        correct: true
+                    },
+                    {
+                        type: "drag-drop",
+                        question: "Drag Marx's concepts to their definitions:",
+                        items: [
+                            { id: "bourgeoisie", text: "Bourgeoisie" },
+                            { id: "proletariat", text: "Proletariat" },
+                            { id: "alienation", text: "Alienation" },
+                            { id: "base", text: "Base" }
+                        ],
+                        zones: [
+                            { id: "bourgeoisie", text: "Capitalist class who own factories" },
+                            { id: "proletariat", text: "Working class who sell labour" },
+                            { id: "alienation", text: "Workers feeling disconnected from work" },
+                            { id: "base", text: "Economic foundation of society" }
+                        ]
+                    },
+                    {
+                        type: "mcq",
+                        question: "Weber's concept of 'status groups' is based on:",
+                        options: [
+                            "Income levels only",
+                            "Lifestyle, education and prestige",
+                            "Geographic location",
+                            "Age and gender"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        type: "true-false",
+                        question: "Weber believed people could move between classes more easily than Marx thought.",
+                        correct: true
+                    },
+                    {
+                        type: "matching",
+                        question: "Match Weber's three dimensions of inequality:",
+                        pairs: [
+                            { left: "Class", right: "Economic resources and market position" },
+                            { left: "Status", right: "Lifestyle and prestige" },
+                            { left: "Power", right: "Ability to influence others" },
+                            { left: "Social mobility", right: "Moving between social classes" }
+                        ]
+                    },
+                    {
+                        type: "mcq",
+                        question: "Marx believed the bourgeoisie and proletariat would:",
+                        options: [
+                            "Cooperate peacefully",
+                            "Always be in conflict",
+                            "Gradually merge together",
+                            "Ignore each other"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        type: "true-false",
+                        question: "Marx's 'base and superstructure' theory suggests that economics shapes culture and politics.",
+                        correct: true
+                    },
+                    {
+                        type: "mcq",
+                        question: "The 'Stratification in the News' exercise analysed:",
+                        options: [
+                            "Historical documents",
+                            "Real news articles about social problems",
+                            "Government statistics",
+                            "Academic theories only"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        type: "mcq",
+                        question: "Weber's approach to social stratification was:",
+                        options: [
+                            "Simpler than Marx's",
+                            "More complex than Marx's",
+                            "Identical to Marx's",
+                            "Completely opposite to Marx's"
+                        ],
+                        correct: 1
+                    }
+                ]
+            },
+            4: {
+                title: "Education",
+                questions: [
+                    {
+                        type: "mcq",
+                        question: "Eastern education systems are rooted in:",
+                        options: [
+                            "Christianity and Greek philosophy",
+                            "Islam, Taoism, Confucianism and Buddhism",
+                            "Secular humanism",
+                            "Industrial revolution principles"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        type: "true-false",
+                        question: "Western education systems typically emphasise individual thinking and questioning ideas.",
+                        correct: true
+                    },
+                    {
+                        type: "matching",
+                        question: "Match the learning approaches:",
+                        pairs: [
+                            { left: "Active learning", right: "Students participate through discussions" },
+                            { left: "Passive learning", right: "Students listen and memorise" },
+                            { left: "Student-centred", right: "Student at centre of education" },
+                            { left: "Teacher-led", right: "Teacher gives information" }
+                        ]
+                    },
+                    {
+                        type: "drag-drop",
+                        question: "Drag the educational concepts to their descriptions:",
+                        items: [
+                            { id: "curriculum", text: "Curriculum" },
+                            { id: "pedagogy", text: "Pedagogy" },
+                            { id: "epistemology", text: "Epistemology" },
+                            { id: "methodology", text: "Methodology" }
+                        ],
+                        zones: [
+                            { id: "curriculum", text: "What students learn in school" },
+                            { id: "pedagogy", text: "How teachers teach" },
+                            { id: "epistemology", text: "Ways of knowing things" },
+                            { id: "methodology", text: "Ways of studying" }
+                        ]
+                    },
+                    {
+                        type: "mcq",
+                        question: "The World Bank Education Overview identified:",
+                        options: [
+                            "Universal education success",
+                            "A global learning crisis",
+                            "Perfect education systems",
+                            "No significant problems"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        type: "true-false",
+                        question: "The learning crisis means that despite more children going to school, many aren't learning what they need.",
+                        correct: true
+                    },
+                    {
+                        type: "mcq",
+                        question: "Critical thinking involves:",
+                        options: [
+                            "Accepting all ideas without question",
+                            "Analysing and evaluating ideas",
+                            "Memorising information",
+                            "Following instructions exactly"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        type: "true-false",
+                        question: "Results-based learning focuses on passing tests and exams.",
+                        correct: true
+                    },
+                    {
+                        type: "mcq",
+                        question: "NGOs in education are:",
+                        options: [
+                            "Government departments",
+                            "Private schools",
+                            "Non-governmental organisations",
+                            "University faculties"
+                        ],
+                        correct: 2
+                    },
+                    {
+                        type: "matching",
+                        question: "Match education system characteristics:",
+                        pairs: [
+                            { left: "Eastern systems", right: "Respect for teachers, memorisation" },
+                            { left: "Western systems", right: "Individual thinking, creativity" },
+                            { left: "Lifelong learning", right: "Continuing to learn throughout life" },
+                            { left: "UNESCO", right: "World Inequality Database on Education" }
+                        ]
+                    }
+                ]
+            },
+            5: {
+                title: "Culture and Society",
+                questions: [
+                    {
+                        type: "mcq",
+                        question: "Material culture includes:",
+                        options: [
+                            "Ideas and beliefs",
+                            "Tangible objects like clothing and buildings",
+                            "Language and values",
+                            "Social norms"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        type: "true-false",
+                        question: "Non-material culture includes abstract things like ideas, values, and beliefs.",
+                        correct: true
+                    },
+                    {
+                        type: "drag-drop",
+                        question: "Drag the theoretical approaches to their focus:",
+                        items: [
+                            { id: "functionalism", text: "Functionalism" },
+                            { id: "conflict", text: "Conflict Theory" },
+                            { id: "symbolic", text: "Symbolic Interactionism" },
+                            { id: "capital", text: "Cultural Capital" }
+                        ],
+                        zones: [
+                            { id: "functionalism", text: "Social stability and order" },
+                            { id: "conflict", text: "Power differences in society" },
+                            { id: "symbolic", text: "Shared meanings through interaction" },
+                            { id: "capital", text: "Cultural advantages and inequality" }
+                        ]
+                    },
+                    {
+                        type: "mcq",
+                        question: "Bourdieu's cultural capital exists in how many forms?",
+                        options: ["Two", "Three", "Four", "Five"],
+                        correct: 1
+                    },
+                    {
+                        type: "matching",
+                        question: "Match Bourdieu's forms of cultural capital:",
+                        pairs: [
+                            { left: "Embodied", right: "Personal habits and knowledge" },
+                            { left: "Objectified", right: "Physical cultural goods" },
+                            { left: "Institutionalised", right: "Academic qualifications" },
+                            { left: "Semiotics", right: "Study of signs and symbols" }
+                        ]
+                    },
+                    {
+                        type: "true-false",
+                        question: "According to Saussure, the relationship between signifier and signified is usually arbitrary.",
+                        correct: true
+                    },
+                    {
+                        type: "mcq",
+                        question: "Ethnocentrism means:",
+                        options: [
+                            "Understanding cultures on their own terms",
+                            "Judging other cultures by your own standards",
+                            "Studying different cultures objectively",
+                            "Celebrating cultural diversity"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        type: "true-false",
+                        question: "Cultural relativism involves understanding cultures on their own terms.",
+                        correct: true
+                    },
+                    {
+                        type: "mcq",
+                        question: "Saussure's signifier theory is part of:",
+                        options: [
+                            "Functionalism",
+                            "Conflict theory",
+                            "Semiotics",
+                            "Social stratification"
+                        ],
+                        correct: 2
+                    },
+                    {
+                        type: "matching",
+                        question: "Match the cultural concepts:",
+                        pairs: [
+                            { left: "Signifier", right: "Physical form like word or image" },
+                            { left: "Signified", right: "The meaning" },
+                            { left: "Cultural hegemony", right: "Dominant groups using culture for power" },
+                            { left: "Social identity", right: "Shaped by cultural factors" }
+                        ]
+                    }
+                ]
+            },
+            6: {
+                title: "Reading Week",
+                questions: [
+                    {
+                        type: "mcq",
+                        question: "Week 6 was designated as:",
+                        options: [
+                            "Exam week",
+                            "Reading week",
+                            "Project week",
+                            "Holiday week"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        type: "true-false",
+                        question: "Reading week had formal lectures and seminars scheduled.",
+                        correct: false
+                    },
+                    {
+                        type: "matching",
+                        question: "Match the weeks to their topics (for review):",
+                        pairs: [
+                            { left: "Week 1", right: "Globalism and nationalism" },
+                            { left: "Week 2", right: "Population and stratification" },
+                            { left: "Week 3", right: "Social stratification theories" },
+                            { left: "Week 4", right: "Education systems" }
+                        ]
+                    },
+                    {
+                        type: "mcq",
+                        question: "The Education Case Study assessment was due in:",
+                        options: [
+                            "Week 8",
+                            "Week 9",
+                            "Week 10",
+                            "Week 12"
+                        ],
+                        correct: 2
+                    },
+                    {
+                        type: "true-false",
+                        question: "Reading week was important for developing self-directed learning skills.",
+                        correct: true
+                    },
+                    {
+                        type: "drag-drop",
+                        question: "Drag the benefits of reading week to their descriptions:",
+                        items: [
+                            { id: "catchup", text: "Catch up time" },
+                            { id: "research", text: "Independent research" },
+                            { id: "consolidate", text: "Consolidate learning" },
+                            { id: "prepare", text: "Prepare for next topics" }
+                        ],
+                        zones: [
+                            { id: "catchup", text: "Review course materials from weeks 1-5" },
+                            { id: "research", text: "Work on Education Case Study" },
+                            { id: "consolidate", text: "Deepen understanding of key concepts" },
+                            { id: "prepare", text: "Get ready for sustainability topics" }
+                        ]
+                    },
+                    {
+                        type: "mcq",
+                        question: "Reading week helped students develop:",
+                        options: [
+                            "Only research skills",
+                            "Self-directed learning and time management",
+                            "Only writing skills",
+                            "Only presentation skills"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        type: "true-false",
+                        question: "Deep learning takes time and requires opportunities for reflection.",
+                        correct: true
+                    },
+                    {
+                        type: "mcq",
+                        question: "The upcoming topics after reading week included:",
+                        options: [
+                            "More population studies",
+                            "Advanced mathematics",
+                            "Sustainability and climate change",
+                            "Art and literature"
+                        ],
+                        correct: 2
+                    },
+                    {
+                        type: "mcq",
+                        question: "Reading week was positioned:",
+                        options: [
+                            "At the beginning of term",
+                            "In the middle of term",
+                            "At the end of term",
+                            "During exam period"
+                        ],
+                        correct: 1
+                    }
+                ]
+            },
+            7: {
+                title: "Sustainability",
+                questions: [
+                    {
+                        type: "mcq",
+                        question: "The UN Brundtland Commission defined sustainable development as:",
+                        options: [
+                            "Economic growth at any cost",
+                            "Meeting present needs without compromising future generations",
+                            "Protecting the environment only",
+                            "Maximising profits"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        type: "true-false",
+                        question: "The three pillars of sustainability are environmental, social, and economic.",
+                        correct: true
+                    },
+                    {
+                        type: "drag-drop",
+                        question: "Drag the sustainability concepts to their descriptions:",
+                        items: [
+                            { id: "people", text: "People" },
+                            { id: "profit", text: "Profit" },
+                            { id: "planet", text: "Planet" },
+                            { id: "sdgs", text: "SDGs" }
+                        ],
+                        zones: [
+                            { id: "people", text: "Social sustainability and equity" },
+                            { id: "profit", text: "Economic sustainability" },
+                            { id: "planet", text: "Environmental sustainability" },
+                            { id: "sdgs", text: "17 global goals for 2030" }
+                        ]
+                    },
+                    {
+                        type: "matching",
+                        question: "Match the sustainability frameworks:",
+                        pairs: [
+                            { left: "Circular Economy", right: "Minimise waste, maximise resource use" },
+                            { left: "CSR", right: "Corporate Social Responsibility" },
+                            { left: "LCA", right: "Life Cycle Assessment" },
+                            { left: "Triple Bottom Line", right: "People, Profit, Planet" }
+                        ]
+                    },
+                    {
+                        type: "mcq",
+                        question: "The Sustainable Development Goals aim to achieve sustainability by:",
+                        options: [
+                            "2025",
+                            "2030",
+                            "2035",
+                            "2040"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        type: "true-false",
+                        question: "Life Cycle Assessment evaluates environmental impacts from production to disposal.",
+                        correct: true
+                    },
+                    {
+                        type: "mcq",
+                        question: "The precautionary principle means:",
+                        options: [
+                            "Wait for complete scientific proof",
+                            "Take action to prevent harm even with uncertain evidence",
+                            "Ignore potential risks",
+                            "Only act when damage is done"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        type: "matching",
+                        question: "Match the sustainability principles:",
+                        pairs: [
+                            { left: "Intergenerational equity", right: "Fairness between generations" },
+                            { left: "Intra-generational equity", right: "Fairness within current generation" },
+                            { left: "Polluter pays", right: "Those causing damage pay costs" },
+                            { left: "Biodiversity", right: "Variety of life on Earth" }
+                        ]
+                    },
+                    {
+                        type: "true-false",
+                        question: "Gentrification can sometimes conflict with social sustainability goals.",
+                        correct: true
+                    },
+                    {
+                        type: "mcq",
+                        question: "The Harmonyville case study explored:",
+                        options: [
+                            "Rural development",
+                            "Urban renewal and gentrification",
+                            "International trade",
+                            "Climate change adaptation"
+                        ],
+                        correct: 1
+                    }
+                ]
+            },
+            8: {
+                title: "Concepts of Change",
+                questions: [
+                    {
+                        type: "mcq",
+                        question: "The central tension in social change is between:",
+                        options: [
+                            "Rich and poor",
+                            "Structure and agency",
+                            "Old and young",
+                            "Urban and rural"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        type: "true-false",
+                        question: "Structure refers to existing social, economic and cultural patterns that shape our lives.",
+                        correct: true
+                    },
+                    {
+                        type: "drag-drop",
+                        question: "Drag the change concepts to their descriptions:",
+                        items: [
+                            { id: "gradual", text: "Gradual change" },
+                            { id: "revolutionary", text: "Revolutionary change" },
+                            { id: "agency", text: "Agency" },
+                            { id: "fluid", text: "Fluid identities" }
+                        ],
+                        zones: [
+                            { id: "gradual", text: "Slow change through small modifications" },
+                            { id: "revolutionary", text: "Rapid fundamental transformation" },
+                            { id: "agency", text: "Ability to make choices and take action" },
+                            { id: "fluid", text: "Identities that change over time" }
+                        ]
+                    },
+                    {
+                        type: "matching",
+                        question: "Match the transformation processes:",
+                        pairs: [
+                            { left: "Contrast", right: "Encountering new experiences" },
+                            { left: "Confrontation", right: "Examining existing beliefs" },
+                            { left: "Replacement", right: "Developing new perspectives" },
+                            { left: "Collective action", right: "Groups working together for change" }
+                        ]
+                    },
+                    {
+                        type: "mcq",
+                        question: "New social movements emerged in the:",
+                        options: [
+                            "1950s",
+                            "1960s",
+                            "1970s",
+                            "1980s"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        type: "true-false",
+                        question: "Identities are fixed and cannot change over time.",
+                        correct: false
+                    },
+                    {
+                        type: "mcq",
+                        question: "When traditional jobs disappear, workers must:",
+                        options: [
+                            "Give up working",
+                            "Move to another country",
+                            "Develop new skills and redefine themselves",
+                            "Wait for jobs to return"
+                        ],
+                        correct: 2
+                    },
+                    {
+                        type: "true-false",
+                        question: "Social movements can challenge traditional ideas about identity and society.",
+                        correct: true
+                    },
+                    {
+                        type: "matching",
+                        question: "Match the change-related terms:",
+                        pairs: [
+                            { left: "Social structures", right: "Organised patterns of relationships" },
+                            { left: "Social mobility", right: "Movement between social positions" },
+                            { left: "Power imbalances", right: "Unequal distribution of power" },
+                            { left: "Social conflict", right: "Tensions between groups" }
+                        ]
+                    },
+                    {
+                        type: "mcq",
+                        question: "Social transformation happens when:",
+                        options: [
+                            "One person changes",
+                            "Many individuals change together",
+                            "Government makes new laws",
+                            "Technology advances"
+                        ],
+                        correct: 1
+                    }
+                ]
+            }
+        };
+
+        let currentWeek = 1;
+        let userAnswers = {};
+        let questionStates = {}; // Track which questions have been answered
+        let selectedMatching = null;
+        let draggedElement = null;
+
+        // Initialize quiz
+        document.addEventListener('DOMContentLoaded', function() {
+            loadWeek(1);
+            setupEventListeners();
+        });
+
+        function setupEventListeners() {
+            // Week selection buttons
+            document.querySelectorAll('.week-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const week = parseInt(this.dataset.week);
+                    loadWeek(week);
+                });
+            });
+
+            // Summary and reset buttons
+            document.getElementById('summary-btn').addEventListener('click', showSummary);
+            document.getElementById('reset-btn').addEventListener('click', resetQuiz);
+        }
+
+        function loadWeek(week) {
+            currentWeek = week;
+            
+            // Initialize data structures for this week if not exists
+            if (!userAnswers[week]) userAnswers[week] = {};
+            if (!questionStates[week]) questionStates[week] = {};
+            
+            // Reset matching selection
+            selectedMatching = null;
+
+            // Update active button
+            document.querySelectorAll('.week-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (parseInt(btn.dataset.week) === week) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Load quiz content
+            const content = document.getElementById('quiz-content');
+            content.innerHTML = generateQuizHTML(week);
+
+            // Update progress
+            updateProgress();
+
+            // Setup question interactions
+            setupQuestionInteractions();
+
+            // Restore previous answers and states
+            restorePreviousAnswers();
+        }
+
+        function generateQuizHTML(week) {
+            const weekData = quizData[week];
+            let html = `<h2>${weekData.title}</h2>`;
+
+            weekData.questions.forEach((q, index) => {
+                const questionState = questionStates[currentWeek] && questionStates[currentWeek][index];
+                const statusClass = questionState ? (questionState.correct ? 'answered' : 'incorrect') : '';
+                
+                html += `<div class="question ${statusClass}" data-question="${index}">`;
+                html += `<div class="question-type">${getQuestionTypeLabel(q.type)}`;
+                if (questionState) {
+                    html += `<span class="question-status ${questionState.correct ? 'correct' : 'incorrect'}">
+                        ${questionState.correct ? '✓' : '✗'}
+                    </span>`;
+                }
+                html += `</div>`;
+                html += `<h3>Question ${index + 1}: ${q.question}</h3>`;
+
+                switch (q.type) {
+                    case 'mcq':
+                        html += generateMCQHTML(q, index);
+                        break;
+                    case 'true-false':
+                        html += generateTrueFalseHTML(q, index);
+                        break;
+                    case 'matching':
+                        html += generateMatchingHTML(q, index);
+                        break;
+                    case 'drag-drop':
+                        html += generateDragDropHTML(q, index);
+                        break;
+                }
+
+                html += `<div class="feedback" id="feedback-${index}"></div>`;
+                html += `</div>`;
+            });
+
+            return html;
+        }
+
+        function getQuestionTypeLabel(type) {
+            const labels = {
+                'mcq': 'Multiple Choice',
+                'true-false': 'True/False',
+                'matching': 'Matching',
+                'drag-drop': 'Drag & Drop'
+            };
+            return labels[type];
+        }
+
+        function generateMCQHTML(question, qIndex) {
+            let html = '<div class="options">';
+            question.options.forEach((option, oIndex) => {
+                html += `<div class="option" data-question="${qIndex}" data-option="${oIndex}">${option}</div>`;
+            });
+            html += '</div>';
+            return html;
+        }
+
+        function generateTrueFalseHTML(question, qIndex) {
+            return `
+                <div class="true-false">
+                    <div class="tf-option" data-question="${qIndex}" data-answer="true">True</div>
+                    <div class="tf-option" data-question="${qIndex}" data-answer="false">False</div>
+                </div>
+            `;
+        }
+
+        function generateMatchingHTML(question, qIndex) {
+            let html = '<div class="matching-container">';
+            html += '<div class="matching-column"><h4>Match these:</h4>';
+            question.pairs.forEach((pair, pIndex) => {
+                html += `<div class="matching-item left" data-question="${qIndex}" data-pair="${pIndex}" data-side="left">${pair.left}</div>`;
+            });
+            html += '</div><div class="matching-column"><h4>With these:</h4>';
+            
+            // Shuffle the right side for difficulty
+            const shuffledPairs = [...question.pairs].sort(() => Math.random() - 0.5);
+            shuffledPairs.forEach((pair, pIndex) => {
+                const originalIndex = question.pairs.findIndex(p => p.right === pair.right);
+                html += `<div class="matching-item right" data-question="${qIndex}" data-pair="${originalIndex}" data-side="right">${pair.right}</div>`;
+            });
+            html += '</div></div>';
+            return html;
+        }
+
+        function generateDragDropHTML(question, qIndex) {
+            let html = '<div class="drag-drop-container">';
+            html += '<div class="drag-items"><h4>Drag these items:</h4>';
+            question.items.forEach((item, iIndex) => {
+                html += `<div class="drag-item" draggable="true" data-question="${qIndex}" data-item="${item.id}" data-index="${iIndex}">${item.text}</div>`;
+            });
+            html += '</div><div class="drop-zones"><h4>To these definitions:</h4>';
+            question.zones.forEach((zone, zIndex) => {
+                html += `<div class="drop-zone" data-question="${qIndex}" data-zone="${zone.id}" data-index="${zIndex}">${zone.text}</div>`;
+            });
+            html += '</div></div>';
+            return html;
+        }
+
+        function setupQuestionInteractions() {
+            // Reset global variables
+            selectedMatching = null;
+            draggedElement = null;
+            
+            // MCQ options
+            document.querySelectorAll('.option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const qIndex = parseInt(this.dataset.question);
+                    const oIndex = parseInt(this.dataset.option);
+                    
+                    // Skip if already answered
+                    if (questionStates[currentWeek] && questionStates[currentWeek][qIndex]) return;
+                    
+                    // Clear previous selections
+                    document.querySelectorAll(`[data-question="${qIndex}"].option`).forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
+                    // Select this option
+                    this.classList.add('selected');
+                    
+                    // Store answer
+                    userAnswers[currentWeek][qIndex] = oIndex;
+                    
+                    // Check answer immediately
+                    const question = quizData[currentWeek].questions[qIndex];
+                    const isCorrect = oIndex === question.correct;
+                    markQuestionComplete(qIndex, isCorrect);
+                    showMCQResult(qIndex, question, oIndex, isCorrect);
+                    
+                    updateProgress();
+                });
+            });
+
+            // True/False options
+            document.querySelectorAll('.tf-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const qIndex = parseInt(this.dataset.question);
+                    const answer = this.dataset.answer === 'true';
+                    
+                    // Skip if already answered
+                    if (questionStates[currentWeek] && questionStates[currentWeek][qIndex]) return;
+                    
+                    // Clear previous selections
+                    document.querySelectorAll(`[data-question="${qIndex}"].tf-option`).forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
+                    // Select this option
+                    this.classList.add('selected');
+                    
+                    // Store answer
+                    userAnswers[currentWeek][qIndex] = answer;
+                    
+                    // Check answer immediately
+                    const question = quizData[currentWeek].questions[qIndex];
+                    const isCorrect = answer === question.correct;
+                    markQuestionComplete(qIndex, isCorrect);
+                    showTrueFalseResult(qIndex, question, answer, isCorrect);
+                    
+                    updateProgress();
+                });
+            });
+
+            // Matching items
+            document.querySelectorAll('.matching-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const qIndex = parseInt(this.dataset.question);
+                    const pairIndex = parseInt(this.dataset.pair);
+                    const side = this.dataset.side;
+                    
+                    // Skip if already answered
+                    if (questionStates[currentWeek] && questionStates[currentWeek][qIndex]) return;
+                    
+                    if (!selectedMatching) {
+                        // First selection
+                        selectedMatching = { qIndex, pairIndex, side, element: this };
+                        this.classList.add('selected');
+                    } else if (selectedMatching.qIndex === qIndex && selectedMatching.side !== side) {
+                        // Valid second selection (different side, same question)
+                        const match = {
+                            left: selectedMatching.side === 'left' ? selectedMatching.pairIndex : pairIndex,
+                            right: selectedMatching.side === 'right' ? selectedMatching.pairIndex : pairIndex
+                        };
+                        
+                        // Store answer
+                        if (!userAnswers[currentWeek][qIndex]) userAnswers[currentWeek][qIndex] = [];
+                        
+                        // Remove if already exists
+                        userAnswers[currentWeek][qIndex] = userAnswers[currentWeek][qIndex].filter(
+                            m => m.left !== match.left && m.right !== match.right
+                        );
+                        
+                        userAnswers[currentWeek][qIndex].push(match);
+                        
+                        // Check if this is a correct match
+                        const isCorrectMatch = match.left === match.right;
+                        
+                        if (isCorrectMatch) {
+                            // Color both items with the same pair color
+                            const colorClass = `pair-${pairIndex}`;
+                            this.classList.remove('selected');
+                            selectedMatching.element.classList.remove('selected');
+                            this.classList.add(colorClass);
+                            selectedMatching.element.classList.add(colorClass);
+                            
+                            // Check if all pairs are matched
+                            const question = quizData[currentWeek].questions[qIndex];
+                            if (userAnswers[currentWeek][qIndex].length === question.pairs.length) {
+                                const allCorrect = checkMatchingAnswer(question, userAnswers[currentWeek][qIndex]);
+                                markQuestionComplete(qIndex, allCorrect);
+                                showMatchingResult(qIndex, question, userAnswers[currentWeek][qIndex], allCorrect);
+                                updateProgress();
+                            }
+                        } else {
+                            // Show as selected briefly then clear
+                            this.classList.add('selected');
+                            setTimeout(() => {
+                                this.classList.remove('selected');
+                                if (selectedMatching && selectedMatching.element) {
+                                    selectedMatching.element.classList.remove('selected');
+                                }
+                            }, 500);
+                        }
+                        
+                        selectedMatching = null;
+                    } else {
+                        // Invalid selection or same element
+                        if (selectedMatching && selectedMatching.element) {
+                            selectedMatching.element.classList.remove('selected');
+                        }
+                        selectedMatching = { qIndex, pairIndex, side, element: this };
+                        
+                        // Clear all selections and select this one
+                        document.querySelectorAll(`[data-question="${qIndex}"].matching-item`).forEach(item => {
+                            item.classList.remove('selected');
+                        });
+                        this.classList.add('selected');
+                    }
+                });
+            });
+
+            // Drag and drop
+            setupDragAndDrop();
+        }
+
+        function setupDragAndDrop() {
+            document.querySelectorAll('.drag-item').forEach(item => {
+                item.addEventListener('dragstart', function(e) {
+                    const qIndex = parseInt(this.dataset.question);
+                    // Skip if already answered
+                    if (questionStates[currentWeek] && questionStates[currentWeek][qIndex]) {
+                        e.preventDefault();
+                        return;
+                    }
+                    
+                    draggedElement = this;
+                    this.classList.add('dragging');
+                    e.dataTransfer.effectAllowed = 'move';
+                });
+
+                item.addEventListener('dragend', function() {
+                    this.classList.remove('dragging');
+                    draggedElement = null;
+                });
+            });
+
+            document.querySelectorAll('.drop-zone').forEach(zone => {
+                zone.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                    this.classList.add('drag-over');
+                });
+
+                zone.addEventListener('dragleave', function() {
+                    this.classList.remove('drag-over');
+                });
+
+                zone.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    this.classList.remove('drag-over');
+                    
+                    if (draggedElement) {
+                        const qIndex = parseInt(this.dataset.question);
+                        const zoneId = this.dataset.zone;
+                        const itemId = draggedElement.dataset.item;
+                        
+                        // Skip if already answered
+                        if (questionStates[currentWeek] && questionStates[currentWeek][qIndex]) return;
+                        
+                        // Store answer
+                        if (!userAnswers[currentWeek][qIndex]) userAnswers[currentWeek][qIndex] = {};
+                        userAnswers[currentWeek][qIndex][itemId] = zoneId;
+                        
+                        // Visual feedback
+                        this.textContent = draggedElement.textContent;
+                        this.classList.add('filled');
+                        
+                        // Check if all items are placed
+                        const question = quizData[currentWeek].questions[qIndex];
+                        if (Object.keys(userAnswers[currentWeek][qIndex]).length === question.items.length) {
+                            const isCorrect = checkDragDropAnswer(question, userAnswers[currentWeek][qIndex]);
+                            markQuestionComplete(qIndex, isCorrect);
+                            showDragDropResult(qIndex, question, userAnswers[currentWeek][qIndex], isCorrect);
+                            updateProgress();
+                        }
+                    }
+                });
+            });
+        }
+
+        function markQuestionComplete(qIndex, isCorrect) {
+            if (!questionStates[currentWeek]) questionStates[currentWeek] = {};
+            questionStates[currentWeek][qIndex] = { correct: isCorrect };
+            
+            const questionElement = document.querySelector(`[data-question="${qIndex}"].question`);
+            questionElement.classList.add(isCorrect ? 'answered' : 'incorrect');
+            
+            // Add status indicator
+            const questionType = questionElement.querySelector('.question-type');
+            const existingStatus = questionType.querySelector('.question-status');
+            if (existingStatus) existingStatus.remove();
+            
+            const status = document.createElement('span');
+            status.className = `question-status ${isCorrect ? 'correct' : 'incorrect'}`;
+            status.textContent = isCorrect ? '✓' : '✗';
+            questionType.appendChild(status);
+            
+            // Disable further interaction for this question
+            disableQuestion(qIndex);
+        }
+
+        function disableQuestion(qIndex) {
+            // Disable all interactive elements for this question
+            document.querySelectorAll(`[data-question="${qIndex}"]`).forEach(element => {
+                if (element.classList.contains('option') || 
+                    element.classList.contains('tf-option') || 
+                    element.classList.contains('matching-item') ||
+                    element.classList.contains('drag-item')) {
+                    element.classList.add('disabled');
+                    element.style.cursor = 'not-allowed';
+                    
+                    // Remove drag functionality
+                    if (element.classList.contains('drag-item')) {
+                        element.draggable = false;
+                    }
+                }
+            });
+        }
+
+        function restorePreviousAnswers() {
+            const weekAnswers = userAnswers[currentWeek];
+            const weekStates = questionStates[currentWeek];
+            
+            if (!weekAnswers || !weekStates) return;
+            
+            Object.keys(weekStates).forEach(qIndex => {
+                const state = weekStates[qIndex];
+                const question = quizData[currentWeek].questions[qIndex];
+                const answer = weekAnswers[qIndex];
+                
+                switch (question.type) {
+                    case 'mcq':
+                        showMCQResult(qIndex, question, answer, state.correct);
+                        break;
+                    case 'true-false':
+                        showTrueFalseResult(qIndex, question, answer, state.correct);
+                        break;
+                    case 'matching':
+                        showMatchingResult(qIndex, question, answer, state.correct);
+                        break;
+                    case 'drag-drop':
+                        showDragDropResult(qIndex, question, answer, state.correct);
+                        break;
+                }
+            });
+        }
+
+        function updateProgress() {
+            const weekData = quizData[currentWeek];
+            const totalQuestions = weekData.questions.length;
+            let answeredQuestions = 0;
+            
+            if (questionStates[currentWeek]) {
+                answeredQuestions = Object.keys(questionStates[currentWeek]).length;
+            }
+            
+            const progress = (answeredQuestions / totalQuestions) * 100;
+            document.querySelector('.progress-fill').style.width = `${progress}%`;
+        }
+
+        function showMCQResult(qIndex, question, userAnswer, isCorrect) {
+            const options = document.querySelectorAll(`[data-question="${qIndex}"].option`);
+            
+            options.forEach((option, oIndex) => {
+                if (oIndex === question.correct) {
+                    option.classList.add('correct');
+                } else if (oIndex === userAnswer && !isCorrect) {
+                    option.classList.add('incorrect');
+                }
+            });
+
+            showFeedback(qIndex, isCorrect);
+        }
+
+        function showTrueFalseResult(qIndex, question, userAnswer, isCorrect) {
+            const options = document.querySelectorAll(`[data-question="${qIndex}"].tf-option`);
+            
+            options.forEach(option => {
+                const optionValue = option.dataset.answer === 'true';
+                if (optionValue === question.correct) {
+                    option.classList.add('correct');
+                } else if (optionValue === userAnswer && !isCorrect) {
+                    option.classList.add('incorrect');
+                }
+            });
+
+            showFeedback(qIndex, isCorrect);
+        }
+
+        function checkMatchingAnswer(question, userAnswer) {
+            if (!userAnswer || userAnswer.length !== question.pairs.length) return false;
+            
+            for (let pair of question.pairs) {
+                const pairIndex = question.pairs.indexOf(pair);
+                const userMatch = userAnswer.find(match => 
+                    parseInt(match.left) === pairIndex && parseInt(match.right) === pairIndex
+                );
+                if (!userMatch) return false;
+            }
+            return true;
+        }
+
+        function showMatchingResult(qIndex, question, userAnswer, isCorrect) {
+            const items = document.querySelectorAll(`[data-question="${qIndex}"].matching-item`);
+            
+            // Clear existing color classes
+            items.forEach(item => {
+                item.classList.remove('pair-0', 'pair-1', 'pair-2', 'pair-3', 'selected');
+            });
+            
+            if (isCorrect) {
+                // Color each correct pair with its own color
+                question.pairs.forEach((pair, pairIndex) => {
+                    const colorClass = `pair-${pairIndex}`;
+                    items.forEach(item => {
+                        if (parseInt(item.dataset.pair) === pairIndex) {
+                            item.classList.add(colorClass);
+                        }
+                    });
+                });
+            } else {
+                items.forEach(item => item.classList.add('incorrect'));
+            }
+
+            showFeedback(qIndex, isCorrect);
+        }
+
+        function checkDragDropAnswer(question, userAnswer) {
+            if (!userAnswer) return false;
+            
+            for (let item of question.items) {
+                if (userAnswer[item.id] !== item.id) return false;
+            }
+            return true;
+        }
+
+        function showDragDropResult(qIndex, question, userAnswer, isCorrect) {
+            const zones = document.querySelectorAll(`[data-question="${qIndex}"].drop-zone`);
+            
+            zones.forEach(zone => {
+                if (isCorrect) {
+                    zone.classList.add('correct');
+                } else {
+                    zone.classList.add('incorrect');
+                }
+            });
+
+            showFeedback(qIndex, isCorrect);
+        }
+
+        function showFeedback(qIndex, isCorrect) {
+            const feedback = document.getElementById(`feedback-${qIndex}`);
+            feedback.textContent = isCorrect ? '✓ Correct!' : '✗ Incorrect';
+            feedback.className = `feedback ${isCorrect ? 'correct' : 'incorrect'} show`;
+        }
+
+        function showSummary() {
+            let totalQuestions = 0;
+            let correctAnswers = 0;
+            let weeklyResults = {};
+
+            // Calculate results for each week
+            for (let week = 1; week <= 8; week++) {
+                const weekData = quizData[week];
+                const weekTotal = weekData.questions.length;
+                let weekCorrect = 0;
+                
+                if (questionStates[week]) {
+                    Object.values(questionStates[week]).forEach(state => {
+                        if (state.correct) weekCorrect++;
+                    });
+                }
+                
+                weeklyResults[week] = {
+                    title: weekData.title,
+                    correct: weekCorrect,
+                    total: weekTotal,
+                    percentage: weekTotal > 0 ? Math.round((weekCorrect / weekTotal) * 100) : 0
+                };
+                
+                totalQuestions += weekTotal;
+                correctAnswers += weekCorrect;
+            }
+
+            const overallPercentage = totalQuestions > 0 ? Math.round((correctAnswers / totalQuestions) * 100) : 0;
+            
+            let message = '';
+            if (overallPercentage >= 90) message = 'Excellent work across all topics!';
+            else if (overallPercentage >= 80) message = 'Well done overall!';
+            else if (overallPercentage >= 70) message = 'Good effort - keep studying!';
+            else if (overallPercentage >= 60) message = 'Making progress - review key areas!';
+            else message = 'Keep working through the materials!';
+
+            let summaryHTML = `
+                <div class="results">
+                    <h3>Overall Performance: ${message}</h3>
+                    <div class="score">${correctAnswers}/${totalQuestions} (${overallPercentage}%)</div>
+                    <h4>Week-by-week Results:</h4>
+            `;
+
+            for (let week = 1; week <= 8; week++) {
+                const result = weeklyResults[week];
+                summaryHTML += `
+                    <div style="margin: 10px 0; padding: 10px; background: rgba(255,255,255,0.2); border-radius: 8px;">
+                        <strong>Week ${week}: ${result.title}</strong><br>
+                        ${result.correct}/${result.total} correct (${result.percentage}%)
+                    </div>
+                `;
+            }
+
+            summaryHTML += '</div>';
+
+            document.getElementById('quiz-content').innerHTML = summaryHTML;
+        }
+
+        function resetQuiz() {
+            if (confirm('Are you sure you want to reset all quiz progress? This cannot be undone.')) {
+                userAnswers = {};
+                questionStates = {};
+                loadWeek(currentWeek);
+            }
+        }
+    </script>
+</body>
+</html>
