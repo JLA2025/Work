@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Is Democracy a Good Idea? - Comprehensive Interactive Reading Quiz</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .section {
+            background: white;
+            margin: 20px 0;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid #667eea;
+        }
+        
+        .reading-content {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 3px solid #28a745;
+        }
+        
+        .simplified-content {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 3px solid #ffc107;
+        }
+        
+        .quiz-container {
+            margin-top: 20px;
+        }
+        
+        .question {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-left: 3px solid #ffc107;
+        }
+        
+        .options {
+            margin: 10px 0;
+        }
+        
+        .option {
+            margin: 8px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        
+        .option:hover {
+            border-color: #667eea;
+            background: #f8f9ff;
+        }
+        
+        .option.selected {
+            border-color: #007bff;
+            background: #e3f2fd;
+        }
+        
+        .option.correct {
+            border-color: #28a745;
+            background: #d4edda;
+        }
+        
+        .option.incorrect {
+            border-color: #dc3545;
+            background: #f8d7da;
+        }
+        
+        .feedback {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .feedback.correct {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .check-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: background 0.3s ease;
+        }
+        
+        .check-btn:hover {
+            background: #0056b3;
+        }
+        
+        .check-btn:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+        }
+        
+        .next-btn {
+            background: #28a745;
+        }
+        
+        .next-btn:hover {
+            background: #1e7e34;
+        }
+        
+        .progress {
+            background: #e9ecef;
+            border-radius: 10px;
+            height: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, #28a745, #20c997);
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .score {
+            text-align: center;
+            font-size: 1.2em;
+            margin: 20px 0;
+            padding: 15px;
+            background: #ffffff;
+            border: 2px solid #667eea;
+            border-radius: 5px;
+            color: #495057;
+            font-weight: bold;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        h2 {
+            color: #495057;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            color: #667eea;
+        }
+        
+        .author {
+            font-style: italic;
+            color: #ffffff;
+            text-align: center;
+        }
+        
+        .simplified-header {
+            color: #856404;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Is Democracy a Good Idea?</h1>
+        <p class="author">by Lucy Taylor - Comprehensive Interactive Reading Quiz</p>
+        <div class="progress">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="score" id="scoreDisplay">Progress: 0/10 sections completed</div>
+    </div>
+
+    <!-- Section 1: Critical Thinking About Democracy -->
+    <div class="section" id="section1">
+        <h2>Section 1: Critical Thinking About Democracy</h2>
+        <div class="reading-content">
+            <h3>Read the following passage:</h3>
+            <p>Learning to ask deeper or different questions of the world is the purpose of studying in the university and elsewhere. In this spirit, I hope by the end of this chapter to convince you not to be an anti-democrat but to be a critical democrat.</p>
+            
+            <p>Official world opinion is very much in favour of democracy, which is seen as being not only an effective way to govern but a virtuous way to govern. Many ordinary people concur that democracy is a better way to be governed and assert the power of people in society to have a say in their country's future.</p>
+            
+            <p>Contrary to what is commonly assumed, the people who care most about democracy are not citizens of established democracies but those who endure authoritarianism and fight oppression. Often for them, democracy is not so much about voting but dignity and the capacity to be a political agent.</p>
+        </div>
+        
+        <div class="simplified-content">
+            <div class="simplified-header">Levelled:</div>
+            <p>When you study at university, you learn to ask better and deeper questions about the world. This chapter wants you to support democracy, but also to think carefully about it.</p>
+            
+            <p>Most people in the world think democracy is good. They believe it is not only a good way to run a country, but also the right way to do it. Many ordinary people agree that democracy is better than other systems. They want to have a voice in deciding their country's future.</p>
+            
+            <p>Most people think that citizens in democratic countries care most about democracy. But this is not true. The people who care most about democracy are those who live under bad governments and fight against them. For these people, democracy is not just about voting. It is about having dignity and being able to take part in politics.</p>
+        </div>
+        
+        <div class="quiz-container">
+            <div class="question">
+                <strong>Question 1:</strong> According to the text, who cares most about democracy?
+                <div class="options">
+                    <div class="option" data-value="a">a) Citizens of established democracies</div>
+                    <div class="option" data-value="b">b) University students</div>
+                    <div class="option" data-value="c">c) Those who endure authoritarianism and fight oppression</div>
+                    <div class="option" data-value="d">d) Government officials</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            
+            <div class="question">
+                <strong>Question 2:</strong> For people fighting oppression, democracy is primarily about:
+                <div class="options">
+                    <div class="option" data-value="a">a) Voting procedures</div>
+                    <div class="option" data-value="b">b) Dignity and political agency</div>
+                    <div class="option" data-value="c">c) Economic benefits</div>
+                    <div class="option" data-value="d">d) International recognition</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            
+            <button class="check-btn" onclick="checkSection(1, ['c', 'b'])">Check Answers</button>
+            <button class="check-btn next-btn hidden" onclick="nextSection(2)">Next Section</button>
+        </div>
+    </div>
+
+    <!-- Section 2: Argentina's Democratic History -->
+    <div class="section hidden" id="section2">
+        <h2>Section 2: Argentina's Complex Democratic Journey</h2>
+        <div class="reading-content">
+            <h3>Read about Argentina's democratic development:</h3>
+            <p>Argentina became independent of Spanish colonial rule in 1810, though as a settler colony this independence is considered hollow by many indigenous people who point to colonial continuities. In the nineteenth century, elite political struggles focused on nation-building. In the twentieth century, politics revolved around struggles for power, including the demand for political inclusion and greater social equality.</p>
+            
+            <p>Repudiation of these demands often resulted in military coups, of which Argentina suffered no fewer than five: 1930, 1943, 1955, 1966, 1976. However, Argentina's return to electoral democracy in 1983, in which human rights demands played a crucial role, has endured to today.</p>
+            
+            <p>The democracies that rule Latin America today, incomplete and troubled as they are, are nevertheless a source of pride for most Latin Americans and have certainly been hard won.</p>
+        </div>
+        
+        <div class="simplified-content">
+            <div class="simplified-header">Levelled:</div>
+            <p>Argentina became independent from Spain in 1810. However, many native people say this independence was not real because Spanish ideas and control continued. In the 1800s, important people fought about how to build the nation. In the 1900s, politics was about power struggles. People wanted to be included in politics and wanted more equal treatment.</p>
+            
+            <p>When the government refused these demands, the military often took control of the country. This happened five times: in 1930, 1943, 1955, 1966, and 1976. But in 1983, Argentina became a democracy again. People who wanted human rights helped make this happen. Argentina has been a democracy since then.</p>
+            
+            <p>The democracies in Latin America today are not perfect and have problems. But most Latin Americans are proud of them because they were difficult to achieve.</p>
+        </div>
+        
+        <div class="quiz-container">
+            <div class="question">
+                <strong>Question 3:</strong> Why do many indigenous people consider Argentina's 1810 independence "hollow"?
+                <div class="options">
+                    <div class="option" data-value="a">a) Because Spanish rule was too strong</div>
+                    <div class="option" data-value="b">b) Because colonial continuities remained</div>
+                    <div class="option" data-value="c">c) Because independence came too late</div>
+                    <div class="option" data-value="d">d) Because other countries interfered</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            
+            <div class="question">
+                <strong>Question 4:</strong> What role did human rights demands play in Argentina's 1983 democratic transition?
+                <div class="options">
+                    <div class="option" data-value="a">a) They were ignored</div>
+                    <div class="option" data-value="b">b) They played a crucial role</div>
+                    <div class="option" data-value="c">c) They caused delays</div>
+                    <div class="option" data-value="d">d) They were only mentioned briefly</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            
+            <button class="check-btn" onclick="checkSection(2, ['b', 'b'])">Check Answers</button>
+            <button class="check-btn next-btn hidden" onclick="nextSection(3)">Next Section</button>
+        </div>
+    </div>
+
+    <!-- Section 3: Understanding Populism -->
+    <div class="section hidden" id="section3">
+        <h2>Section 3: The Nature of Populism</h2>
+        <div class="reading-content">
+            <h3>Read about populism as a political phenomenon:</h3>
+            <p>Populism is a form of government that combines electoral democracy with a cult of personality. Populism does not focus on a particular political agenda (populists can be left or right wing) but rather on a type of political relationship between a leader and the people.</p>
+            
+            <p>The populist leader often has a charismatic persona and 'performs' powerfulness through rhetoric and action. Gender roles are important to this image too because powerfulness, control and competence are associated with masculinity. Like many populist leaders, populists portray themselves as 'men of action' who won't let bureaucracy or elite interests stand in the way of helping the poor.</p>
+            
+            <p>In some ways, populism seems anti-democratic because it empowers a single charismatic leader and solidifies hierarchies like class and gender, rather than dismantling them. However, leaders are nothing without the mass of people to support them, and examples of successful populism are driven by the demands and desires of people who feel overlooked, disadvantaged and disparaged.</p>
+        </div>
+        
+        <div class="simplified-content">
+            <div class="simplified-header">Levelled:</div>
+            <p>Populism is a type of government that mixes democracy with strong worship of a leader. Populism is not about specific political ideas (populist leaders can be left-wing or right-wing). Instead, it is about the special relationship between a leader and the people.</p>
+            
+            <p>Populist leaders are usually very attractive and charming. They show their power through speaking and actions. Gender roles are important here because people connect power, control and ability with being masculine. Populist leaders show themselves as 'men of action' who will not let government rules or rich people stop them from helping poor people.</p>
+            
+            <p>In some ways, populism seems anti-democratic because it gives power to one charming leader. It makes differences between social classes and men and women stronger, instead of removing these differences. However, leaders need many people to support them. Successful populism happens when people who feel ignored, disadvantaged and looked down upon want change.</p>
+        </div>
+        
+        <div class="quiz-container">
+            <div class="question">
+                <strong>Question 5:</strong> According to the text, populism is primarily characterised by:
+                <div class="options">
+                    <div class="option" data-value="a">a) A specific left-wing political agenda</div>
+                    <div class="option" data-value="b">b) A type of relationship between leader and people</div>
+                    <div class="option" data-value="c">c) Opposition to democracy</div>
+                    <div class="option" data-value="d">d) Support for bureaucracy</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            
+            <div class="question">
+                <strong>Question 6:</strong> Why might populism be considered both democratic and anti-democratic?
+                <div class="options">
+                    <div class="option" data-value="a">a) It only supports wealthy people</div>
+                    <div class="option" data-value="b">b) It empowers one leader but gives voice to overlooked people</div>
+                    <div class="option" data-value="c">c) It eliminates elections completely</div>
+                    <div class="option" data-value="d">d) It focuses only on international issues</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            
+            <button class="check-btn" onclick="checkSection(3, ['b', 'b'])">Check Answers</button>
+            <button class="check-btn next-btn hidden" onclick="nextSection(4)">Next Section</button>
+        </div>
+    </div>
+
+    <!-- Section 4: Juan and Eva Perón -->
+    <div class="section hidden" id="section4">
+        <h2>Section 4: The Peróns and Gender Roles in Populism</h2>
+        <div class="reading-content">
+            <h3>Read about Juan and Eva Perón:</h3>
+            <p>Juan Perón had a magnetic personality and gave brilliant speeches. He 'performed' his connection to ordinary people by taking off his jacket and rolling up his sleeves, by playing sports and emphasising his recent immigrant past. He made use of a masculine image as a father figure, a role that makes dominance seem natural, protective and legitimate.</p>
+            
+            <p>His paternalistic and macho persona was reinforced by the femininity of his wife, Eva Duarte. Evita was a hugely charismatic person in her own right, whose greatest part as an actress was to 'perform' her roles of humble provincial girl, glamorous fashionista and mother of the poor. She was simultaneously ordinary and extraordinary, conveying the idea that she knew how hard a life of poverty could be, but now occupied a place of power from where she could 'change the world'.</p>
+            
+            <p>Evita also performed the role of dutiful wife, declaring her unconditional support for her husband and urging the working class to trust in Perón, the father-figure, as she did. By playing up to these idealised gender roles, Juan and Eva Perón legitimised their powerfulness and won the hearts of the people.</p>
+        </div>
+        
+        <div class="simplified-content">
+            <div class="simplified-header">Levelled:</div>
+            <p>Juan Perón was very attractive to people and gave excellent speeches. He showed that he was connected to ordinary people by removing his jacket and rolling up his sleeves, playing sports, and talking about his immigrant background. He used a masculine image as a father figure. This made his control seem natural, protective and right.</p>
+            
+            <p>His fatherly and masculine personality was made stronger by his wife Eva Duarte's feminine behaviour. Evita was very charming. As an actress, she played roles of a simple country girl, a glamorous fashion lover, and a mother of poor people. She was both ordinary and extraordinary. She showed that she understood how hard life was for poor people, but now she had power to 'change the world'.</p>
+            
+            <p>Evita also acted as a good wife. She said she supported her husband completely and told working-class people to trust Perón like she did. By using these perfect gender roles, Juan and Eva Perón made their power seem right and won people's hearts.</p>
+        </div>
+        
+        <div class="quiz-container">
+            <div class="question">
+                <strong>Question 7:</strong> How did Juan Perón demonstrate his connection to ordinary people?
+                <div class="options">
+                    <div class="option" data-value="a">a) By wearing expensive suits</div>
+                    <div class="option" data-value="b">b) By taking off his jacket, playing sports, and emphasising his immigrant past</div>
+                    <div class="option" data-value="c">c) By avoiding public appearances</div>
+                    <div class="option" data-value="d">d) By speaking only to elites</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            
+            <div class="question">
+                <strong>Question 8:</strong> What roles did Eva Perón perform to gain support?
+                <div class="options">
+                    <div class="option" data-value="a">a) Only wealthy socialite</div>
+                    <div class="option" data-value="b">b) Humble provincial girl, glamorous fashionista, and mother of the poor</div>
+                    <div class="option" data-value="c">c) Only political opponent</div>
+                    <div class="option" data-value="d">d) Only foreign diplomat</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            
+            <button class="check-btn" onclick="checkSection(4, ['b', 'b'])">Check Answers</button>
+            <button class="check-btn next-btn hidden" onclick="nextSection(5)">Next Section</button>
+        </div>
+    </div>
+
+    <!-- Section 5: Clientelism and Political Favours -->
+    <div class="section hidden" id="section5">
+        <h2>Section 5: Clientelism - Benefits as Political Favours</h2>
+        <div class="reading-content">
+            <h3>Read about clientelism in Argentine politics:</h3>
+            <p>Perón distributed national wealth more evenly and raised poor people's standard of living. However, these state welfare benefits were often channelled through the Peronist party machine. Benefits are not so much 'rights', then, as 'politicised favours'.</p>
+            
+            <p>Known as clientelism, this system channels goods, services, opportunities, money, benefits and jobs through the Peronist patron–client networks. The party has a network of activists who distribute social welfare and benefits through grassroots offices that act as community centres. They host pensioners' lunches and weekend barbecues as well as party meetings.</p>
+            
+            <p>While distributing such welfare has a tangible and positive impact on poor people's lives, it undermines a core principle of democracy – equality – because benefits are not distributed evenly to everyone because they are citizens (rights), but unevenly and to a few because they are Peronist supporters (favours).</p>
+        </div>
+        
+        <div class="simplified-content">
+            <div class="simplified-header">Levelled:</div>
+            <p>Perón shared the country's wealth more equally and improved poor people's lives. However, these government benefits were often given through the Peronist party organisation. So benefits were not really 'rights' for all people, but 'political favours' for some people.</p>
+            
+            <p>This system is called clientelism. It gives goods, services, opportunities, money, benefits and jobs through Peronist networks. The party has workers who give out social welfare and benefits through local offices that work like community centres. They organise lunches for old people and weekend barbecues, as well as party meetings.</p>
+            
+            <p>Giving out welfare like this helps poor people's lives in real ways. But it damages an important principle of democracy – equality. This is because benefits are not given equally to everyone because they are citizens (rights). Instead, they are given unequally and only to some people because they support the Peronist party (favours).</p>
+        </div>
+        
+        <div class="quiz-container">
+            <div class="question">
+                <strong>Question 9:</strong> What is clientelism?
+                <div class="options">
+                    <div class="option" data-value="a">a) A system of equal rights for all citizens</div>
+                    <div class="option" data-value="b">b) A system that channels benefits through political party networks</div>
+                    <div class="option" data-value="c">c) A system that eliminates political parties</div>
+                    <div class="option" data-value="d">d) A system that only helps wealthy people</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            
+            <div class="question">
+                <strong>Question 10:</strong> Why does clientelism undermine democracy according to the text?
+                <div class="options">
+                    <div class="option" data-value="a">a) It helps too many people</div>
+                    <div class="option" data-value="b">b) It distributes benefits as political favours rather than equal rights</div>
+                    <div class="option" data-value="c">c) It costs too much money</div>
+                    <div class="option" data-value="d">d) It involves too many meetings</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            
+            <button class="check-btn" onclick="checkSection(5, ['b', 'b'])">Check Answers</button>
+            <button class="check-btn next-btn hidden" onclick="nextSection(6)">Next Section</button>
+        </div>
+    </div>
+
+    <!-- Section 6: Madres de la Plaza de Mayo -->
+    <div class="section hidden" id="section6">
+        <h2>Section 6: The Madres de la Plaza de Mayo</h2>
+        <div class="reading-content">
+            <h3>Read about Argentina's human rights movement:</h3>
+            <p>The last military dictatorship of 1976–83 was one of the most brutal in Latin America, ordering the abduction, murder and disappearance of around 30,000 people whom it understood to be enemies of the Argentine nation. The climate of fear was so intense that very few spoke out against the dictatorship, but the most vocal of those were the Madres de la Plaza de Mayo.</p>
+            
+            <p>The Madres are the mothers of the young people who were 'disappeared' by the military government. They met once a week in Buenos Aires' main square where the presidential palace, cathedral and government ministries are located. Here they walked around the central obelisk in quiet yet powerful condemnation of the military government.</p>
+            
+            <p>Their third significant contribution to democracy in Argentina was to demonstrate that social movements of ordinary people could transform political life. They brought new political actors – and therefore new ideas – to the fore and therefore democratised the political stage.</p>
+        </div>
+        
+        <div class="simplified-content">
+            <div class="simplified-header">Levelled:</div>
+            <p>From 1976 to 1983, Argentina had a very cruel military government. This government kidnapped, killed, and made about 30,000 people disappear because they thought these people were enemies. People were very scared, so most people did not speak against the military government. But the Madres (Mothers) de la Plaza de Mayo were the loudest protesters.</p>
+            
+            <p>The Madres were mothers whose children had 'disappeared' because of the military government. Every week, they met in the main square of Buenos Aires. This square has the president's house, the main church, and government buildings. The mothers walked around a monument in the square to protest against the military government in a quiet but strong way.</p>
+            
+            <p>The Madres made an important contribution to democracy in Argentina. They showed that ordinary people in social movements could change political life. They brought new political people and new ideas into politics. This made politics more democratic.</p>
+        </div>
+        
+        <div class="quiz-container">
+            <div class="question">
+                <strong>Question 11:</strong> Approximately how many people were 'disappeared' during Argentina's 1976-83 dictatorship?
+                <div class="options">
+                    <div class="option" data-value="a">a) 10,000</div>
+                    <div class="option" data-value="b">b) 20,000</div>
+                    <div class="option" data-value="c">c) 30,000</div>
+                    <div class="option" data-value="d">d) 40,000</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            
+            <div class="question">
+                <strong>Question 12:</strong> How did the Madres democratise the political stage?
+                <div class="options">
+                    <div class="option" data-value="a">a) By joining existing political parties</div>
+                    <div class="option" data-value="b">b) By bringing new political actors and ideas to politics</div>
+                    <div class="option" data-value="c">c) By supporting the military government</div>
+                    <div class="option" data-value="d">d) By avoiding political involvement</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            
+            <button class="check-btn" onclick="checkSection(6, ['c', 'b'])">Check Answers</button>
+            <button class="check-btn next-btn hidden" onclick="nextSection(7)">Next Section</button>
+        </div>
+    </div>
+
+    <!-- Section 7: Modern Populism - Trump and Global Comparisons -->
+    <div class="section hidden" id="section7">
+        <h2>Section 7: Modern Populism - Global Comparisons</h2>
+        <div class="reading-content">
+            <h3>Read about contemporary populism:</h3>
+            <p>Like Perón, Trump has built a fervent constituency of support based on classic populist motifs. Despite being a billionaire, he portrays himself as a 'man of the people' who wears baseball caps and talks like an 'average Joe'. His immense charisma can turn fantasy into truth and non-logical arguments into compelling rhetoric, through which he embodies hope, dignifies the excluded and promises action.</p>
+            
+            <p>The key target of his populist rhetoric is the disadvantaged and impoverished white working class. These are his 'real People' whose livelihoods and values no longer fit an America they feel has been betrayed by Washington and they wish to see 'great again'. He lines up the 'others' of this People – the liberal elite, the immigrant, the Muslim terrorist – and offers easy solutions to American problems.</p>
+            
+            <p>Comparing Trump to Perón we can see that despite their very different political orientations, backgrounds and epochs, there are many similarities in the way that they build and configure their connection to the mass support base. This demonstrates that populism is a relationship, not an ideology. It can enhance democracy by giving a voice to the excluded, but the leader-masses hierarchy it engenders promotes authoritarian manipulation.</p>
+        </div>
+        
+        <div class="simplified-content">
+            <div class="simplified-header">Levelled:</div>
+            <p>Like Perón, Trump has built strong support using classic populist methods. Even though he is a billionaire, he shows himself as a 'man of the people' who wears baseball caps and talks like an ordinary person. His great charm can make fantasy seem like truth and weak arguments seem strong. Through this, he gives hope, makes excluded people feel important, and promises action.</p>
+            
+            <p>The main target of his populist speaking is poor and disadvantaged white working-class people. These are his 'real People' whose jobs and values no longer fit in an America they feel has been betrayed by Washington. They want to see America 'great again'. He points to the 'others' – the liberal elite, immigrants, Muslim terrorists – and offers simple solutions to American problems.</p>
+            
+            <p>When we compare Trump to Perón, we can see they are very different in their political beliefs, backgrounds and time periods. But there are many similarities in how they build and organise their connection to mass support. This shows that populism is a relationship, not a set of ideas. It can help democracy by giving a voice to excluded people, but the hierarchy between leader and masses encourages authoritarian control.</p>
+        </div>
+        
+        <div class="quiz-container">
+            <div class="question">
+                <strong>Question 13:</strong> According to the text, what does the comparison between Trump and Perón demonstrate?
+                <div class="options">
+                    <div class="option" data-value="a">a) That populism is an ideology</div>
+                    <div class="option" data-value="b">b) That populism is a relationship, not an ideology</div>
+                    <div class="option" data-value="c">c) That all populists have the same background</div>
+                    <div class="option" data-value="d">d) That populism only exists in America</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            
+            <div class="question">
+                <strong>Question 14:</strong> Who is the main target of Trump's populist rhetoric?
+                <div class="options">
+                    <div class="option" data-value="a">a) Wealthy business owners</div>
+                    <div class="option" data-value="b">b) University professors</div>
+                    <div class="option" data-value="c">c) Disadvantaged and impoverished white working class</div>
+                    <div class="option" data-value="d">d) International diplomats</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            
+            <button class="check-btn" onclick="checkSection(7, ['b', 'c'])">Check Answers</button>
+            <button class="check-btn next-btn hidden" onclick="nextSection(8)">Next Section</button>
+        </div>
+    </div>
+
+    <!-- Section 8: Human Rights in Established Democracies -->
+    <div class="section hidden" id="section8">
+        <h2>Section 8: Human Rights Struggles in Established Democracies</h2>
+        <div class="reading-content">
+            <h3>Read about human rights in democratic countries:</h3>
+            <p>Human rights are only important for those who don't have them, so in democracies they are an important tool with which to demand justice against oppressive situations. However, we associate human rights struggles with authoritarian regimes and new democracies rather than established democracies. Yet does this set up a false separation between 'bad' governments outside the West that violate human rights and 'good' Western regimes where everyone enjoys human rights?</p>
+            
+            <p>Thinking about the USA from the perspective of Argentina might suggest that we think of the Black Lives Matter campaign as a human rights movement. After all, they denounce daily examples of violent repression at the hands of the police and security forces, point to racial profiling, targeted imprisonment and excessive punishment, which all suggest the skewed application of the rule of law against Black people.</p>
+            
+            <p>Looking at the US from the vantage point of Latin American human rights struggles suggests that we might frame racial injustice as a human rights abuse linked to historical context, lingering authoritarianism, institutionalised prejudice and the failure of democracy, rather than a 'yet-to-be-smoothed-out-aberration' in an otherwise fine democracy.</p>
+        </div>
+        
+        <div class="simplified-content">
+            <div class="simplified-header">Levelled:</div>
+            <p>Human rights are only important for people who do not have them. So in democracies, they are an important tool to demand justice against unfair situations. However, we usually connect human rights struggles with bad governments and new democracies, not with established democracies. But does this create a false division between 'bad' governments outside the West that break human rights and 'good' Western governments where everyone has human rights?</p>
+            
+            <p>If we think about the USA from Argentina's point of view, we might think of the Black Lives Matter campaign as a human rights movement. They criticise daily examples of violent treatment by police and security forces. They point to racial profiling, unfair imprisonment and too much punishment. All of this suggests that the law is applied unfairly against Black people.</p>
+            
+            <p>If we look at the US from the point of view of Latin American human rights struggles, we might see racial injustice as a human rights abuse. This abuse is connected to historical context, remaining authoritarianism, institutionalised prejudice and the failure of democracy. It is not just a problem that will be fixed in an otherwise good democracy.</p>
+        </div>
+        
+        <div class="quiz-container">
+            <div class="question">
+                <strong>Question 15:</strong> According to the text, why might we consider Black Lives Matter a human rights movement?
+                <div class="options">
+                    <div class="option" data-value="a">a) Because it only focuses on voting rights</div>
+                    <div class="option" data-value="b">b) Because it denounces violent repression and unequal treatment by police</div>
+                    <div class="option" data-value="c">c) Because it supports government policies</div>
+                    <div class="option" data-value="d">d) Because it operates only outside the US</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            
+            <div class="question">
+                <strong>Question 16:</strong> What does the text suggest about the division between 'good' and 'bad' governments regarding human rights?
+                <div class="options">
+                    <div class="option" data-value="a">a) It is completely accurate</div>
+                    <div class="option" data-value="b">b) It is a false separation that masks injustice in established democracies</div>
+                    <div class="option" data-value="c">c) It should be strengthened</div>
+                    <div class="option" data-value="d">d) It only applies to economic issues</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            
+            <button class="check-btn" onclick="checkSection(8, ['b', 'b'])">Check Answers</button>
+            <button class="check-btn next-btn hidden" onclick="nextSection(9)">Next Section</button>
+        </div>
+    </div>
+
+    <!-- Section 9: Challenging Western-Centric Views of Democracy -->
+    <div class="section hidden" id="section9">
+        <h2>Section 9: Challenging Western-Centric Views of Democracy</h2>
+        <div class="reading-content">
+            <h3>Read about different perspectives on democracy:</h3>
+            <p>One of the key assumptions buried deep within conventional understandings of democracy is that the best democracies are in the West. This is the message portrayed in conventional textbooks, which start their thinking about democracy from political systems in the USA, the UK and other European countries and use these as the yardstick by which to measure how good or deficient a democracy is.</p>
+            
+            <p>This means that Western democracies are already set-up to 'succeed' by these criteria while the others are pre-destined to fail or are portrayed as playing catch-up. The word 'democratic' is not value-neutral. It has a silent tag 'good' attached to it, and the label 'non-democratic' is therefore silently tagged with the word 'bad' or at least 'dubious'.</p>
+            
+            <p>Beginning our thinking from Argentina and not the USA disrupts our assumptions about what is 'normal' practice in a democracy and it questions the super-valuation of political practice in 'developed' democracies. It helps to break through the presumption that the USA has got democracy 'right' and that others simply need to follow suit.</p>
+        </div>
+        
+        <div class="simplified-content">
+            <div class="simplified-header">Levelled:</div>
+            <p>One important assumption hidden in normal understandings of democracy is that the best democracies are in the West. This is the message shown in normal textbooks. They start thinking about democracy from political systems in the USA, UK and other European countries. They use these as the standard to measure how good or bad a democracy is.</p>
+            
+            <p>This means that Western democracies are already set up to 'succeed' by these measures, while others are expected to fail or are shown as trying to catch up. The word 'democratic' is not neutral. It has a hidden 'good' label attached to it. The label 'non-democratic' therefore has a hidden 'bad' or 'suspicious' label.</p>
+            
+            <p>Starting our thinking from Argentina instead of the USA changes our assumptions about what is 'normal' practice in democracy. It questions the high value placed on political practice in 'developed' democracies. It helps break the assumption that the USA has got democracy 'right' and that others simply need to copy it.</p>
+        </div>
+        
+        <div class="quiz-container">
+            <div class="question">
+                <strong>Question 17:</strong> According to the text, why are Western democracies set up to 'succeed' in conventional analysis?
+                <div class="options">
+                    <div class="option" data-value="a">a) Because they have more money</div>
+                    <div class="option" data-value="b">b) Because they are used as the yardstick to measure other democracies</div>
+                    <div class="option" data-value="c">c) Because they have more people</div>
+                    <div class="option" data-value="d">d) Because they are geographically larger</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            
+            <div class="question">
+                <strong>Question 18:</strong> What does starting analysis from Argentina rather than the USA accomplish?
+                <div class="options">
+                    <div class="option" data-value="a">a) It confirms Western superiority</div>
+                    <div class="option" data-value="b">b) It disrupts assumptions about 'normal' democratic practice</div>
+                    <div class="option" data-value="c">c) It eliminates the need for democracy</div>
+                    <div class="option" data-value="d">d) It focuses only on economic issues</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            
+            <button class="check-btn" onclick="checkSection(9, ['b', 'b'])">Check Answers</button>
+            <button class="check-btn next-btn hidden" onclick="nextSection(10)">Next Section</button>
+        </div>
+    </div>
+
+    <!-- Section 10: Conclusion - Democratising Democracy -->
+    <div class="section hidden" id="section10">
+        <h2>Section 10: Democratising Our Understanding of Democracy</h2>
+        <div class="reading-content">
+            <h3>Read the author's conclusion:</h3>
+            <p>Is democracy a good idea, then? In the end, for me, the answer to the question is yes. I think that democracy seeks to enact political ideals that I find crucial and that are shared by a wide range of cultures and societies. However, I think that we need to democratise our understanding of democracy.</p>
+            
+            <p>One of the key problems with what we call democracy is the way that it has been hitched to the political systems of powerful countries, wrapped up in a moral lesson about the way that societies ought to be. One of the things that we can do when we are thinking about democracy, then, is to make these value judgements visible and problematise them.</p>
+            
+            <p>There is no one way to be democratic, and in my view a plurality of ideas, voices, and cultural understandings can enrich all our democracies, even those that are longest established. If we want to look for ways to broaden or deepen democracy, then, we should look to the social realm and imagine democracy as not just a way to choose decision-makers but a way of life.</p>
+        </div>
+        
+        <div class="simplified-content">
+            <div class="simplified-header">Levelled:</div>
+            <p>So, is democracy a good idea? For me, the answer is yes. I think democracy tries to create important political ideas that I believe in. Many cultures and societies around the world share these ideas. However, I think we need to make our understanding of democracy more democratic.</p>
+            
+            <p>One big problem with what we call democracy is that it has been connected to the political systems of powerful countries. These countries teach moral lessons about how societies should be. When we think about democracy, we should make these value judgements clear and question them.</p>
+            
+            <p>There is not just one way to be democratic. I believe that many different ideas, voices, and cultural understandings can make all our democracies better, even the oldest ones. If we want to find ways to improve democracy, we should look at the social world and think of democracy not just as a way to choose leaders, but as a way of life.</p>
+        </div>
+        
+        <div class="quiz-container">
+            <div class="question">
+                <strong>Question 19:</strong> According to the author, what is one key problem with how we understand democracy?
+                <div class="options">
+                    <div class="option" data-value="a">a) It focuses too much on voting</div>
+                    <div class="option" data-value="b">b) It has been connected to powerful countries' systems and moral lessons</div>
+                    <div class="option" data-value="c">c) It is too expensive to implement</div>
+                    <div class="option" data-value="d">d) It involves too many people</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            
+            <div class="question">
+                <strong>Question 20:</strong> How should we think about democracy according to the conclusion?
+                <div class="options">
+                    <div class="option" data-value="a">a) Only as a way to choose decision-makers</div>
+                    <div class="option" data-value="b">b) As both a way to choose decision-makers and a way of life</div>
+                    <div class="option" data-value="c">c) Only as an economic system</div>
+                    <div class="option" data-value="d">d) Only as a Western concept</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            
+            <button class="check-btn" onclick="checkSection(10, ['b', 'b'])">Check Answers</button>
+            <button class="check-btn next-btn hidden" onclick="showFinalScore()">View Final Results</button>
+        </div>
+    </div>
+
+    <!-- Final Results -->
+    <div class="section hidden" id="finalResults">
+        <h2>Quiz Complete!</h2>
+        <div id="finalScore" class="score"></div>
+        <div id="resultsBreakdown"></div>
+        <button class="check-btn" onclick="restartQuiz()">Restart Quiz</button>
+    </div>
+
+    <script>
+        let currentSection = 1;
+        let totalScore = 0;
+        let sectionsCompleted = 0;
+        let sectionScores = {};
+
+        function selectOption(event) {
+            const option = event.target;
+            if (option.classList.contains('option')) {
+                const question = option.closest('.question');
+                const options = question.querySelectorAll('.option');
+                options.forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+            }
+        }
+
+        function checkSection(sectionNum, correctAnswers) {
+            const section = document.getElementById(`section${sectionNum}`);
+            const questions = section.querySelectorAll('.question');
+            let sectionScore = 0;
+            let allAnswered = true;
+            
+            questions.forEach((question, index) => {
+                const selectedOption = question.querySelector('.option.selected');
+                const feedback = question.querySelector('.feedback');
+                const options = question.querySelectorAll('.option');
+                
+                if (!selectedOption) {
+                    feedback.textContent = 'Please select an answer.';
+                    feedback.className = 'feedback incorrect';
+                    feedback.style.display = 'block';
+                    allAnswered = false;
+                    return;
+                }
+                
+                const selectedValue = selectedOption.dataset.value;
+                const correctValue = correctAnswers[index];
+                
+                options.forEach(option => {
+                    if (option.dataset.value === correctValue) {
+                        option.classList.add('correct');
+                    } else if (option.classList.contains('selected') && option.dataset.value !== correctValue) {
+                        option.classList.add('incorrect');
+                    }
+                });
+                
+                if (selectedValue === correctValue) {
+                    feedback.textContent = 'Correct! Well done.';
+                    feedback.className = 'feedback correct';
+                    sectionScore++;
+                } else {
+                    feedback.textContent = `Incorrect. The correct answer is ${correctValue.toUpperCase()}.`;
+                    feedback.className = 'feedback incorrect';
+                }
+                feedback.style.display = 'block';
+            });
+            
+            if (!allAnswered) {
+                return;
+            }
+            
+            sectionScores[sectionNum] = sectionScore;
+            
+            const checkBtn = section.querySelector('.check-btn:not(.next-btn)');
+            const nextBtn = section.querySelector('.next-btn');
+            checkBtn.disabled = true;
+            nextBtn.classList.remove('hidden');
+            
+            sectionsCompleted++;
+            updateProgress();
+        }
+
+        function nextSection(sectionNum) {
+            document.getElementById(`section${currentSection}`).classList.add('hidden');
+            document.getElementById(`section${sectionNum}`).classList.remove('hidden');
+            currentSection = sectionNum;
+            window.scrollTo(0, 0);
+        }
+
+        function updateProgress() {
+            const progressBar = document.getElementById('progressBar');
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            const progress = (sectionsCompleted / 10) * 100;
+            
+            progressBar.style.width = progress + '%';
+            totalScore = Object.values(sectionScores).reduce((sum, score) => sum + score, 0);
+            
+            if (sectionsCompleted === 0) {
+                scoreDisplay.textContent = `Progress: 0/10 sections completed`;
+            } else {
+                scoreDisplay.textContent = `Progress: ${sectionsCompleted}/10 sections completed | Score: ${totalScore}/20`;
+            }
+        }
+
+        function showFinalScore() {
+            document.getElementById(`section${currentSection}`).classList.add('hidden');
+            document.getElementById('finalResults').classList.remove('hidden');
+            
+            const finalScore = document.getElementById('finalScore');
+            const percentage = Math.round((totalScore / 20) * 100);
+            
+            let grade = '';
+            if (percentage >= 90) grade = 'Excellent!';
+            else if (percentage >= 80) grade = 'Very Good!';
+            else if (percentage >= 70) grade = 'Good!';
+            else if (percentage >= 60) grade = 'Satisfactory';
+            else grade = 'Needs Improvement';
+            
+            finalScore.innerHTML = `
+                <h3>Final Score: ${totalScore}/20 (${percentage}%)</h3>
+                <h4>${grade}</h4>
+            `;
+            
+            const breakdown = document.getElementById('resultsBreakdown');
+            let breakdownHTML = '<h4>Section Breakdown:</h4><ul>';
+            for (let i = 1; i <= 10; i++) {
+                const score = sectionScores[i] || 0;
+                breakdownHTML += `<li>Section ${i}: ${score}/2</li>`;
+            }
+            breakdownHTML += '</ul>';
+            breakdown.innerHTML = breakdownHTML;
+            
+            window.scrollTo(0, 0);
+        }
+
+        function restartQuiz() {
+            currentSection = 1;
+            totalScore = 0;
+            sectionsCompleted = 0;
+            sectionScores = {};
+            
+            for (let i = 2; i <= 10; i++) {
+                document.getElementById(`section${i}`).classList.add('hidden');
+            }
+            document.getElementById('finalResults').classList.add('hidden');
+            document.getElementById('section1').classList.remove('hidden');
+            
+            document.querySelectorAll('.option').forEach(option => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+            });
+            
+            document.querySelectorAll('.feedback').forEach(feedback => {
+                feedback.style.display = 'none';
+            });
+            
+            document.querySelectorAll('.check-btn:not(.next-btn)').forEach(btn => {
+                btn.disabled = false;
+            });
+            
+            document.querySelectorAll('.next-btn').forEach(btn => {
+                btn.classList.add('hidden');
+            });
+            
+            updateProgress();
+            window.scrollTo(0, 0);
+        }
+
+        document.addEventListener('click', selectOption);
+        updateProgress();
+    </script>
+</body>
+</html>
