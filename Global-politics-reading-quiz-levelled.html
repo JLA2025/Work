@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Is Democracy a Good Idea? - Interactive Reading Quiz</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .section {
+            background: white;
+            margin: 20px 0;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid #667eea;
+        }
+        
+        .reading-content {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 3px solid #28a745;
+        }
+        
+        .simplified-content {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 3px solid #ffc107;
+        }
+        
+        .quiz-container {
+            margin-top: 20px;
+        }
+        
+        .question {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-left: 3px solid #ffc107;
+        }
+        
+        .options {
+            margin: 10px 0;
+        }
+        
+        .option {
+            margin: 8px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        
+        .option:hover {
+            border-color: #667eea;
+            background: #f8f9ff;
+        }
+        
+        .option.selected {
+            border-color: #007bff;
+            background: #e3f2fd;
+        }
+        
+        .option.correct {
+            border-color: #28a745;
+            background: #d4edda;
+        }
+        
+        .option.incorrect {
+            border-color: #dc3545;
+            background: #f8d7da;
+        }
+        
+        .feedback {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .feedback.correct {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .check-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: background 0.3s ease;
+        }
+        
+        .check-btn:hover {
+            background: #0056b3;
+        }
+        
+        .check-btn:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+        }
+        
+        .next-btn {
+            background: #28a745;
+        }
+        
+        .next-btn:hover {
+            background: #1e7e34;
+        }
+        
+        .progress {
+            background: #e9ecef;
+            border-radius: 10px;
+            height: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, #28a745, #20c997);
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .score {
+            text-align: center;
+            font-size: 1.2em;
+            margin: 20px 0;
+            padding: 15px;
+            background: #ffffff;
+            border: 2px solid #667eea;
+            border-radius: 5px;
+            color: #495057;
+            font-weight: bold;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        h2 {
+            color: #495057;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            color: #667eea;
+        }
+        
+        .author {
+            font-style: italic;
+            color: #ffffff;
+            text-align: center;
+        }
+        
+        .simplified-header {
+            color: #856404;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Is Democracy a Good Idea?</h1>
+        <p class="author">by Lucy Taylor - Interactive Reading Quiz</p>
+        <div class="progress">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="score" id="scoreDisplay">Progress: 0/6 sections completed</div>
+    </div>
+
+    <!-- Section 1: Introduction -->
+    <div class="section" id="section1">
+        <h2>Section 1: Introduction to Democracy</h2>
+        <div class="reading-content">
+            <h3>Read the following passage:</h3>
+            <p>I am sure that for most of you this seems to be a crazy question – of course democracy is a good idea! Democracy stands for freedom, equality, fairness and holding political leaders to account, doesn't it? Well, you're right, it does, and these ideals are upheld as central aspirations by ordinary people right across the world who struggle against authoritarianism or dictatorships, violence, and powerlessness.</p>
+            
+            <p>My aim in this chapter is not to argue against democracy either, but rather to invite you to think a little more deeply and critically about what lies behind the idea of 'democracy'. Where do we start our thinking about democracy and how does that shape what we think it is? What makes a democracy – institutions and rules or people's relationships? Where does democracy take place – in the polling booth or on the streets?</p>
+            
+            <p>Learning to ask deeper or different questions of the world is the purpose of studying in the university and elsewhere. In this spirit, I hope by the end of this chapter to convince you not to be an anti-democrat but to be a critical democrat.</p>
+        </div>
+        
+        <div class="simplified-content">
+            <div class="simplified-header">Simplified (IELTS 4.5 Level):</div>
+            <p>Most people think democracy is a good idea. Democracy means freedom, equality, fairness and making sure leaders do their job properly. People all around the world want these things, especially when they live under bad governments.</p>
+            
+            <p>This chapter does not say democracy is bad. Instead, it asks you to think more carefully about democracy. What is democracy really? Is it about government buildings and laws, or is it about how people treat each other? Does democracy happen when people vote, or when people protest in the streets?</p>
+            
+            <p>When you study at university, you learn to ask better questions about the world. This chapter wants you to support democracy, but also to think carefully about it.</p>
+        </div>
+        
+        <div class="quiz-container">
+            <div class="question">
+                <strong>Question 1:</strong> According to the author, what is the main purpose of this chapter?
+                <div class="options">
+                    <div class="option" data-value="a">a) To argue against democracy</div>
+                    <div class="option" data-value="b">b) To promote authoritarian governments</div>
+                    <div class="option" data-value="c">c) To encourage critical thinking about democracy</div>
+                    <div class="option" data-value="d">d) To explain voting procedures</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            
+            <div class="question">
+                <strong>Question 2:</strong> The author wants readers to become:
+                <div class="options">
+                    <div class="option" data-value="a">a) Anti-democrats</div>
+                    <div class="option" data-value="b">b) Critical democrats</div>
+                    <div class="option" data-value="c">c) Passive observers</div>
+                    <div class="option" data-value="d">d) Political activists</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            
+            <button class="check-btn" onclick="checkSection(1, ['c', 'b'])">Check Answers</button>
+            <button class="check-btn next-btn hidden" onclick="nextSection(2)">Next Section</button>
+        </div>
+    </div>
+
+    <!-- Section 2: Argentina Case Study -->
+    <div class="section hidden" id="section2">
+        <h2>Section 2: Democracy in Argentina</h2>
+        <div class="reading-content">
+            <h3>Read about Argentina's democratic history:</h3>
+            <p>Argentina became independent of Spanish colonial rule in 1810, though as a settler colony this independence is considered hollow by many indigenous people who point to colonial continuities. In the nineteenth century, elite political struggles focused on nation-building. In the twentieth century, politics revolved around struggles for power, including the demand for political inclusion and greater social equality.</p>
+            
+            <p>Repudiation of these demands often resulted in military coups, of which Argentina suffered no fewer than five: 1930, 1943, 1955, 1966, 1976. However, Argentina's return to electoral democracy in 1983, in which human rights demands played a crucial role, has endured to today.</p>
+        </div>
+        
+        <div class="simplified-content">
+            <div class="simplified-header">Simplified (IELTS 4.5 Level):</div>
+            <p>Argentina became independent from Spain in 1810. However, many native people say this independence was not real because Spanish ideas and power continued. In the 1800s, important people fought about how to build the nation. In the 1900s, politics was about who had power. People wanted to be included in politics and wanted more equal treatment.</p>
+            
+            <p>When the government said no to these demands, the military often took control. This happened five times: 1930, 1943, 1955, 1966, and 1976. But in 1983, Argentina became a democracy again. People who wanted human rights helped make this happen. Argentina has been a democracy since then.</p>
+        </div>
+        
+        <div class="quiz-container">
+            <div class="question">
+                <strong>Question 3:</strong> How many military coups did Argentina experience in the 20th century?
+                <div class="options">
+                    <div class="option" data-value="a">a) Three</div>
+                    <div class="option" data-value="b">b) Four</div>
+                    <div class="option" data-value="c">c) Five</div>
+                    <div class="option" data-value="d">d) Six</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            
+            <div class="question">
+                <strong>Question 4:</strong> When did Argentina return to electoral democracy?
+                <div class="options">
+                    <div class="option" data-value="a">a) 1976</div>
+                    <div class="option" data-value="b">b) 1980</div>
+                    <div class="option" data-value="c">c) 1983</div>
+                    <div class="option" data-value="d">d) 1990</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            
+            <button class="check-btn" onclick="checkSection(2, ['c', 'c'])">Check Answers</button>
+            <button class="check-btn next-btn hidden" onclick="nextSection(3)">Next Section</button>
+        </div>
+    </div>
+
+    <!-- Section 3: Populism and Peronism -->
+    <div class="section hidden" id="section3">
+        <h2>Section 3: Populism and the Peronist Party</h2>
+        <div class="reading-content">
+            <h3>Read about Argentine populism:</h3>
+            <p>Populism is a form of government that combines electoral democracy with a cult of personality. In Argentina, populism is expressed through Peronism, a political movement named after Juan Perón. The figure of Perón and his wife Eva remain the emotional centre of the party, which is built on its relationship to the poor.</p>
+            
+            <p>Populism does not focus on a particular political agenda (populists can be left or right wing) but rather on a type of political relationship between a leader and the people. The populist leader often has a charismatic persona and 'performs' powerfulness through rhetoric and action.</p>
+            
+            <p>Juan Perón had a magnetic personality and gave brilliant speeches. He 'performed' his connection to ordinary people by taking off his jacket and rolling up his sleeves, by playing sports and emphasising his recent immigrant past.</p>
+        </div>
+        
+        <div class="simplified-content">
+            <div class="simplified-header">Simplified (IELTS 4.5 Level):</div>
+            <p>Populism is a type of government that mixes democracy with worship of a leader. In Argentina, this is called Peronism, named after Juan Perón. Perón and his wife Eva are still the emotional heart of this political party. The party focuses on helping poor people.</p>
+            
+            <p>Populism is not about specific political ideas (populist leaders can be left-wing or right-wing). Instead, it is about the special relationship between a leader and the people. Populist leaders are usually very charming and show their power through speaking and actions.</p>
+            
+            <p>Juan Perón was very attractive to people and gave excellent speeches. He showed that he was connected to ordinary people by removing his jacket and rolling up his sleeves, playing sports, and talking about his immigrant background.</p>
+        </div>
+        
+        <div class="quiz-container">
+            <div class="question">
+                <strong>Question 5:</strong> According to the text, populism is primarily characterised by:
+                <div class="options">
+                    <div class="option" data-value="a">a) A specific left-wing political agenda</div>
+                    <div class="option" data-value="b">b) A type of relationship between leader and people</div>
+                    <div class="option" data-value="c">c) Opposition to democracy</div>
+                    <div class="option" data-value="d">d) Support for military government</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            
+            <div class="question">
+                <strong>Question 6:</strong> How did Juan Perón demonstrate his connection to ordinary people?
+                <div class="options">
+                    <div class="option" data-value="a">a) By wearing expensive suits</div>
+                    <div class="option" data-value="b">b) By taking off his jacket and rolling up his sleeves</div>
+                    <div class="option" data-value="c">c) By avoiding public appearances</div>
+                    <div class="option" data-value="d">d) By speaking only to elites</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            
+            <button class="check-btn" onclick="checkSection(3, ['b', 'b'])">Check Answers</button>
+            <button class="check-btn next-btn hidden" onclick="nextSection(4)">Next Section</button>
+        </div>
+    </div>
+
+    <!-- Section 4: Madres de la Plaza de Mayo -->
+    <div class="section hidden" id="section4">
+        <h2>Section 4: The Madres de la Plaza de Mayo</h2>
+        <div class="reading-content">
+            <h3>Read about Argentina's human rights movement:</h3>
+            <p>The last military dictatorship of 1976–83 was one of the most brutal in Latin America, ordering the abduction, murder and disappearance of around 30,000 people whom it understood to be enemies of the Argentine nation. The climate of fear was so intense that very few spoke out against the dictatorship, but the most vocal of those were the Madres [Mothers] de la Plaza de Mayo.</p>
+            
+            <p>The Madres are the mothers of the young people who were 'disappeared' by the military government. They met once a week in Buenos Aires' main square where the presidential palace, cathedral and government ministries are located. Here they walked around the central obelisk in quiet yet powerful condemnation of the military government.</p>
+            
+            <p>Their third significant contribution to democracy in Argentina was to demonstrate that social movements of ordinary people could transform political life. They brought new political actors – and therefore new ideas – to the fore and therefore democratised the political stage.</p>
+        </div>
+        
+        <div class="simplified-content">
+            <div class="simplified-header">Simplified (IELTS 4.5 Level):</div>
+            <p>From 1976 to 1983, Argentina had a very cruel military government. This government kidnapped, killed, and made about 30,000 people disappear because they thought these people were enemies. People were very scared, so most people did not speak against the military government. But the Madres (Mothers) de la Plaza de Mayo were the loudest protesters.</p>
+            
+            <p>The Madres were mothers whose children had 'disappeared' because of the military government. Every week, they met in the main square of Buenos Aires. This square has the president's house, the main church, and government buildings. The mothers walked around a monument in the square to protest against the military government in a quiet but strong way.</p>
+            
+            <p>The Madres made an important contribution to democracy in Argentina. They showed that ordinary people in social movements could change political life. They brought new political people and new ideas into politics. This made politics more democratic.</p>
+        </div>
+        
+        <div class="quiz-container">
+            <div class="question">
+                <strong>Question 7:</strong> Approximately how many people were 'disappeared' during Argentina's military dictatorship of 1976-83?
+                <div class="options">
+                    <div class="option" data-value="a">a) 10,000</div>
+                    <div class="option" data-value="b">b) 20,000</div>
+                    <div class="option" data-value="c">c) 30,000</div>
+                    <div class="option" data-value="d">d) 40,000</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            
+            <div class="question">
+                <strong>Question 8:</strong> The Madres de la Plaza de Mayo demonstrated that:
+                <div class="options">
+                    <div class="option" data-value="a">a) Only politicians can create change</div>
+                    <div class="option" data-value="b">b) Social movements of ordinary people can transform political life</div>
+                    <div class="option" data-value="c">c) Military governments cannot be opposed</div>
+                    <div class="option" data-value="d">d) Democracy is impossible in Argentina</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            
+            <button class="check-btn" onclick="checkSection(4, ['c', 'b'])">Check Answers</button>
+            <button class="check-btn next-btn hidden" onclick="nextSection(5)">Next Section</button>
+        </div>
+    </div>
+
+    <!-- Section 5: Democratic vs Undemocratic Elements of Populism -->
+    <div class="section hidden" id="section5">
+        <h2>Section 5: What is Democratic and Undemocratic about Populism?</h2>
+        <div class="reading-content">
+            <h3>Read about the complexities of populism:</h3>
+            <p>In some ways, populism seems anti-democratic because it empowers a single charismatic leader and solidifies hierarchies like class and gender, rather than dismantling them. However, leaders are nothing without the mass of people to support them, and examples of successful populism are driven by the demands and desires of people who feel overlooked, disadvantaged and disparaged.</p>
+            
+            <p>In that sense, populism provides a vehicle for the voiceless and seems to democratise political debate. In 1940s Argentina the 'overlooked' were the workers of the slaughterhouses and meat-packing plants around Buenos Aires. Other political parties had ignored or disdained the workers, so this mass of dissatisfied people was unrepresented.</p>
+            
+            <p>Perón captured this constituency by making them feel important and strong, saying that they were the true creators of Argentine wealth, and denouncing the parasitic and idle elite – the 'oligarchs'.</p>
+        </div>
+        
+        <div class="simplified-content">
+            <div class="simplified-header">Simplified (IELTS 4.5 Level):</div>
+            <p>Populism can seem anti-democratic in some ways. This is because it gives power to one charming leader and makes differences between social classes and men and women stronger, instead of removing these differences. However, leaders need many people to support them. Successful populism happens when people who feel ignored, disadvantaged and disrespected want change.</p>
+            
+            <p>In this way, populism gives a voice to people who have no voice. It makes political discussion more democratic. In 1940s Argentina, the 'ignored' people were workers in meat factories around Buenos Aires. Other political parties had ignored these workers or looked down on them. So these unhappy people had no representation in politics.</p>
+            
+            <p>Perón won these people by making them feel important and strong. He said they were the real creators of Argentina's wealth. He also criticised the lazy, rich elite people – the 'oligarchs'.</p>
+        </div>
+        
+        <div class="quiz-container">
+            <div class="question">
+                <strong>Question 9:</strong> According to the text, populism can be seen as anti-democratic because it:
+                <div class="options">
+                    <div class="option" data-value="a">a) Empowers a single charismatic leader</div>
+                    <div class="option" data-value="b">b) Promotes voting rights</div>
+                    <div class="option" data-value="c">c) Supports multiple parties</div>
+                    <div class="option" data-value="d">d) Encourages debate</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            
+            <div class="question">
+                <strong>Question 10:</strong> Populism can also be seen as democratic because it:
+                <div class="options">
+                    <div class="option" data-value="a">a) Supports only the wealthy</div>
+                    <div class="option" data-value="b">b) Provides a vehicle for the voiceless</div>
+                    <div class="option" data-value="c">c) Eliminates elections</div>
+                    <div class="option" data-value="d">d) Promotes inequality</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            
+            <button class="check-btn" onclick="checkSection(5, ['a', 'b'])">Check Answers</button>
+            <button class="check-btn next-btn hidden" onclick="nextSection(6)">Next Section</button>
+        </div>
+    </div>
+
+    <!-- Section 6: Conclusion -->
+    <div class="section hidden" id="section6">
+        <h2>Section 6: Rethinking Democracy</h2>
+        <div class="reading-content">
+            <h3>Read the author's conclusion:</h3>
+            <p>Is democracy a good idea, then? In the end, for me, the answer to the question is yes. I think that democracy seeks to enact political ideals that I find crucial and that are shared by a wide range of cultures and societies. However, I think that we need to democratise our understanding of democracy.</p>
+            
+            <p>I have argued that one of the key problems with what we call democracy is the way that it has been hitched to the political systems of powerful countries, wrapped up in a moral lesson about the way that societies ought to be. One of the things that we can do when we are thinking about democracy, then, is to make these value judgements visible and problematise them.</p>
+            
+            <p>There is no one way to be democratic, and in my view a plurality of ideas, voices, and cultural understandings can enrich all our democracies, even those that are longest established.</p>
+        </div>
+        
+        <div class="simplified-content">
+            <div class="simplified-header">Simplified (IELTS 4.5 Level):</div>
+            <p>So, is democracy a good idea? For me, the answer is yes. I think democracy tries to create important political ideas that I believe in. Many cultures and societies around the world share these ideas. However, I think we need to make our understanding of democracy more democratic.</p>
+            
+            <p>I have argued that one big problem with democracy is that it has been connected to the political systems of powerful countries. These countries teach moral lessons about how societies should be. When we think about democracy, we should make these value judgements clear and question them.</p>
+            
+            <p>There is not just one way to be democratic. I believe that many different ideas, voices, and cultural understandings can make all our democracies better, even the oldest ones.</p>
+        </div>
+        
+        <div class="quiz-container">
+            <div class="question">
+                <strong>Question 11:</strong> The author's final answer to "Is democracy a good idea?" is:
+                <div class="options">
+                    <div class="option" data-value="a">a) No, democracy is fundamentally flawed</div>
+                    <div class="option" data-value="b">b) Yes, but we need to democratise our understanding of democracy</div>
+                    <div class="option" data-value="c">c) Maybe, it depends on the country</div>
+                    <div class="option" data-value="d">d) Only in Western countries</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            
+            <div class="question">
+                <strong>Question 12:</strong> According to the conclusion, what can enrich our democracies?
+                <div class="options">
+                    <div class="option" data-value="a">a) Following only Western models</div>
+                    <div class="option" data-value="b">b) A plurality of ideas, voices, and cultural understandings</div>
+                    <div class="option" data-value="c">c) Eliminating different perspectives</div>
+                    <div class="option" data-value="d">d) Maintaining the status quo</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            
+            <button class="check-btn" onclick="checkSection(6, ['b', 'b'])">Check Answers</button>
+            <button class="check-btn next-btn hidden" onclick="showFinalScore()">View Final Results</button>
+        </div>
+    </div>
+
+    <!-- Final Results -->
+    <div class="section hidden" id="finalResults">
+        <h2>Quiz Complete!</h2>
+        <div id="finalScore" class="score"></div>
+        <div id="resultsBreakdown"></div>
+        <button class="check-btn" onclick="restartQuiz()">Restart Quiz</button>
+    </div>
+
+    <script>
+        let currentSection = 1;
+        let totalScore = 0;
+        let sectionsCompleted = 0;
+        let sectionScores = {};
+
+        function selectOption(event) {
+            const option = event.target;
+            if (option.classList.contains('option')) {
+                // Remove selection from other options in the same question
+                const question = option.closest('.question');
+                const options = question.querySelectorAll('.option');
+                options.forEach(opt => opt.classList.remove('selected'));
+                
+                // Select this option
+                option.classList.add('selected');
+            }
+        }
+
+        function checkSection(sectionNum, correctAnswers) {
+            const section = document.getElementById(`section${sectionNum}`);
+            const questions = section.querySelectorAll('.question');
+            let sectionScore = 0;
+            let allAnswered = true;
+            
+            questions.forEach((question, index) => {
+                const selectedOption = question.querySelector('.option.selected');
+                const feedback = question.querySelector('.feedback');
+                const options = question.querySelectorAll('.option');
+                
+                if (!selectedOption) {
+                    feedback.textContent = 'Please select an answer.';
+                    feedback.className = 'feedback incorrect';
+                    feedback.style.display = 'block';
+                    allAnswered = false;
+                    return;
+                }
+                
+                const selectedValue = selectedOption.dataset.value;
+                const correctValue = correctAnswers[index];
+                
+                // Show correct answer
+                options.forEach(option => {
+                    if (option.dataset.value === correctValue) {
+                        option.classList.add('correct');
+                    } else if (option.classList.contains('selected') && option.dataset.value !== correctValue) {
+                        option.classList.add('incorrect');
+                    }
+                });
+                
+                if (selectedValue === correctValue) {
+                    feedback.textContent = 'Correct! Well done.';
+                    feedback.className = 'feedback correct';
+                    sectionScore++;
+                } else {
+                    feedback.textContent = `Incorrect. The correct answer is ${correctValue.toUpperCase()}.`;
+                    feedback.className = 'feedback incorrect';
+                }
+                feedback.style.display = 'block';
+            });
+            
+            // Only proceed if all questions are answered
+            if (!allAnswered) {
+                return;
+            }
+            
+            // Store section score
+            sectionScores[sectionNum] = sectionScore;
+            
+            // Disable check button and show next button
+            const checkBtn = section.querySelector('.check-btn:not(.next-btn)');
+            const nextBtn = section.querySelector('.next-btn');
+            checkBtn.disabled = true;
+            nextBtn.classList.remove('hidden');
+            
+            // Update progress
+            sectionsCompleted++;
+            updateProgress();
+        }
+
+        function nextSection(sectionNum) {
+            // Hide current section
+            document.getElementById(`section${currentSection}`).classList.add('hidden');
+            
+            // Show next section
+            document.getElementById(`section${sectionNum}`).classList.remove('hidden');
+            currentSection = sectionNum;
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        function updateProgress() {
+            const progressBar = document.getElementById('progressBar');
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            const progress = (sectionsCompleted / 6) * 100;
+            
+            progressBar.style.width = progress + '%';
+            
+            // Calculate total score
+            totalScore = Object.values(sectionScores).reduce((sum, score) => sum + score, 0);
+            
+            if (sectionsCompleted === 0) {
+                scoreDisplay.textContent = `Progress: 0/6 sections completed`;
+            } else {
+                scoreDisplay.textContent = `Progress: ${sectionsCompleted}/6 sections completed | Score: ${totalScore}/12`;
+            }
+        }
+
+        function showFinalScore() {
+            document.getElementById(`section${currentSection}`).classList.add('hidden');
+            document.getElementById('finalResults').classList.remove('hidden');
+            
+            const finalScore = document.getElementById('finalScore');
+            const percentage = Math.round((totalScore / 12) * 100);
+            
+            let grade = '';
+            if (percentage >= 90) grade = 'Excellent!';
+            else if (percentage >= 80) grade = 'Very Good!';
+            else if (percentage >= 70) grade = 'Good!';
+            else if (percentage >= 60) grade = 'Satisfactory';
+            else grade = 'Needs Improvement';
+            
+            finalScore.innerHTML = `
+                <h3>Final Score: ${totalScore}/12 (${percentage}%)</h3>
+                <h4>${grade}</h4>
+            `;
+            
+            const breakdown = document.getElementById('resultsBreakdown');
+            let breakdownHTML = '<h4>Section Breakdown:</h4><ul>';
+            for (let i = 1; i <= 6; i++) {
+                const score = sectionScores[i] || 0;
+                breakdownHTML += `<li>Section ${i}: ${score}/2</li>`;
+            }
+            breakdownHTML += '</ul>';
+            breakdown.innerHTML = breakdownHTML;
+            
+            window.scrollTo(0, 0);
+        }
+
+        function restartQuiz() {
+            // Reset all variables
+            currentSection = 1;
+            totalScore = 0;
+            sectionsCompleted = 0;
+            sectionScores = {};
+            
+            // Hide all sections except first
+            for (let i = 2; i <= 6; i++) {
+                document.getElementById(`section${i}`).classList.add('hidden');
+            }
+            document.getElementById('finalResults').classList.add('hidden');
+            document.getElementById('section1').classList.remove('hidden');
+            
+            // Reset all questions
+            document.querySelectorAll('.option').forEach(option => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+            });
+            
+            document.querySelectorAll('.feedback').forEach(feedback => {
+                feedback.style.display = 'none';
+            });
+            
+            document.querySelectorAll('.check-btn:not(.next-btn)').forEach(btn => {
+                btn.disabled = false;
+            });
+            
+            document.querySelectorAll('.next-btn').forEach(btn => {
+                btn.classList.add('hidden');
+            });
+            
+            // Reset progress
+            updateProgress();
+            window.scrollTo(0, 0);
+        }
+
+        // Add event listeners for option selection
+        document.addEventListener('click', selectOption);
+        
+        // Initialize progress
+        updateProgress();
+    </script>
+</body>
+</html>
