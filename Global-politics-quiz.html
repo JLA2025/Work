@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Politics Quiz</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .quiz-container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.2em;
+        }
+        
+        .instructions {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .quiz-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 25px;
+        }
+        
+        .terms-section, .definitions-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+        }
+        
+        .terms-section h3, .definitions-section h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .term-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+        }
+        
+        .term-number {
+            font-weight: bold;
+            color: #3498db;
+            margin-right: 10px;
+            min-width: 25px;
+        }
+        
+        .term-name {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .term-input {
+            width: 40px;
+            margin-left: auto;
+            padding: 5px;
+            border: 2px solid #dee2e6;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .term-input.correct {
+            border-color: #27ae60;
+            background-color: #d4edda;
+        }
+        
+        .term-input.incorrect {
+            border-color: #e74c3c;
+            background-color: #f8d7da;
+        }
+        
+        .definition-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+        }
+        
+        .definition-letter {
+            font-weight: bold;
+            color: #e74c3c;
+            margin-right: 15px;
+            min-width: 20px;
+            font-size: 1.1em;
+        }
+        
+        .definition-text {
+            color: #2c3e50;
+            line-height: 1.5;
+        }
+        
+        .controls {
+            text-align: center;
+            margin-top: 25px;
+        }
+        
+        button {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .check-btn {
+            background: linear-gradient(45deg, #27ae60, #2ecc71);
+        }
+        
+        .reset-btn {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+        }
+        
+        .results {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .results.excellent {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .results.good {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        
+        .results.needs-improvement {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        @media (max-width: 768px) {
+            .quiz-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            body {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Global Politics Quiz</h1>
+        <div class="instructions">
+            <strong>Section A: Match each term with its correct definition.</strong><br>
+            Enter the letter (A-J) that corresponds to the correct definition for each term.
+        </div>
+        
+        <div class="quiz-content">
+            <div class="terms-section">
+                <h3>Terms</h3>
+                <div class="term-item">
+                    <span class="term-number">1.</span>
+                    <span class="term-name">Political Obligation</span>
+                    <input type="text" class="term-input" data-answer="B" maxlength="1">
+                </div>
+                <div class="term-item">
+                    <span class="term-number">2.</span>
+                    <span class="term-name">Coercive Power</span>
+                    <input type="text" class="term-input" data-answer="A" maxlength="1">
+                </div>
+                <div class="term-item">
+                    <span class="term-number">3.</span>
+                    <span class="term-name">Rule of Law</span>
+                    <input type="text" class="term-input" data-answer="D" maxlength="1">
+                </div>
+                <div class="term-item">
+                    <span class="term-number">4.</span>
+                    <span class="term-name">Political Culture</span>
+                    <input type="text" class="term-input" data-answer="I" maxlength="1">
+                </div>
+                <div class="term-item">
+                    <span class="term-number">5.</span>
+                    <span class="term-name">Legitimate Power</span>
+                    <input type="text" class="term-input" data-answer="H" maxlength="1">
+                </div>
+                <div class="term-item">
+                    <span class="term-number">6.</span>
+                    <span class="term-name">Representative Democracy</span>
+                    <input type="text" class="term-input" data-answer="C" maxlength="1">
+                </div>
+                <div class="term-item">
+                    <span class="term-number">7.</span>
+                    <span class="term-name">Totalitarianism</span>
+                    <input type="text" class="term-input" data-answer="J" maxlength="1">
+                </div>
+                <div class="term-item">
+                    <span class="term-number">8.</span>
+                    <span class="term-name">Direct Democracy</span>
+                    <input type="text" class="term-input" data-answer="E" maxlength="1">
+                </div>
+                <div class="term-item">
+                    <span class="term-number">9.</span>
+                    <span class="term-name">Authoritarian Culture</span>
+                    <input type="text" class="term-input" data-answer="F" maxlength="1">
+                </div>
+                <div class="term-item">
+                    <span class="term-number">10.</span>
+                    <span class="term-name">Informational Power</span>
+                    <input type="text" class="term-input" data-answer="G" maxlength="1">
+                </div>
+            </div>
+            
+            <div class="definitions-section">
+                <h3>Definitions</h3>
+                <div class="definition-item">
+                    <span class="definition-letter">A.</span>
+                    <span class="definition-text">Power exerted through threat of force or punishment</span>
+                </div>
+                <div class="definition-item">
+                    <span class="definition-letter">B.</span>
+                    <span class="definition-text">A moral or legal duty citizens have to obey laws and support the government</span>
+                </div>
+                <div class="definition-item">
+                    <span class="definition-letter">C.</span>
+                    <span class="definition-text">A system where citizens elect representatives to make decisions on their behalf</span>
+                </div>
+                <div class="definition-item">
+                    <span class="definition-letter">D.</span>
+                    <span class="definition-text">Principle that everyone, including government officials, is subject to the same laws</span>
+                </div>
+                <div class="definition-item">
+                    <span class="definition-letter">E.</span>
+                    <span class="definition-text">A system of government where citizens directly debate and vote on laws</span>
+                </div>
+                <div class="definition-item">
+                    <span class="definition-letter">F.</span>
+                    <span class="definition-text">Political values emphasising obedience, hierarchy, and strong leadership</span>
+                </div>
+                <div class="definition-item">
+                    <span class="definition-letter">G.</span>
+                    <span class="definition-text">Control over valuable knowledge or expertise used to influence others</span>
+                </div>
+                <div class="definition-item">
+                    <span class="definition-letter">H.</span>
+                    <span class="definition-text">Authority granted by a position or institution</span>
+                </div>
+                <div class="definition-item">
+                    <span class="definition-letter">I.</span>
+                    <span class="definition-text">The set of shared beliefs, values, and attitudes that a society holds towards its government</span>
+                </div>
+                <div class="definition-item">
+                    <span class="definition-letter">J.</span>
+                    <span class="definition-text">A political system where the state controls all aspects of public and private life</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button onclick="checkAnswers()" class="check-btn">Check Answers</button>
+            <button onclick="resetQuiz()" class="reset-btn">Reset Quiz</button>
+        </div>
+        
+        <div id="results" class="results" style="display: none;"></div>
+    </div>
+    
+    <script>
+        // Auto-capitalize input
+        document.querySelectorAll('.term-input').forEach(input => {
+            input.addEventListener('input', function() {
+                this.value = this.value.toUpperCase();
+            });
+        });
+        
+        function checkAnswers() {
+            const inputs = document.querySelectorAll('.term-input');
+            let correct = 0;
+            let total = inputs.length;
+            
+            inputs.forEach(input => {
+                const userAnswer = input.value.toUpperCase();
+                const correctAnswer = input.dataset.answer.toUpperCase();
+                
+                // Reset classes
+                input.classList.remove('correct', 'incorrect');
+                
+                if (userAnswer === correctAnswer) {
+                    input.classList.add('correct');
+                    correct++;
+                } else if (userAnswer !== '') {
+                    input.classList.add('incorrect');
+                }
+            });
+            
+            displayResults(correct, total);
+        }
+        
+        function displayResults(correct, total) {
+            const resultsDiv = document.getElementById('results');
+            const percentage = Math.round((correct / total) * 100);
+            
+            let resultClass = '';
+            let message = '';
+            
+            if (percentage >= 90) {
+                resultClass = 'excellent';
+                message = `Excellent! You scored ${correct}/${total} (${percentage}%) - Outstanding knowledge of global politics!`;
+            } else if (percentage >= 70) {
+                resultClass = 'good';
+                message = `Well done! You scored ${correct}/${total} (${percentage}%) - Good understanding of the concepts.`;
+            } else {
+                resultClass = 'needs-improvement';
+                message = `You scored ${correct}/${total} (${percentage}%). Review the definitions and try again!`;
+            }
+            
+            resultsDiv.className = `results ${resultClass}`;
+            resultsDiv.innerHTML = message;
+            resultsDiv.style.display = 'block';
+        }
+        
+        function resetQuiz() {
+            const inputs = document.querySelectorAll('.term-input');
+            inputs.forEach(input => {
+                input.value = '';
+                input.classList.remove('correct', 'incorrect');
+            });
+            
+            document.getElementById('results').style.display = 'none';
+        }
+        
+        // Allow Enter key to check answers
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkAnswers();
+            }
+        });
+    </script>
+</body>
+</html>
