@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student-friendly Assessment Grid</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+        
+        .grid-container {
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 12px;
+        }
+        
+        th {
+            background-color: #34495e;
+            color: white;
+            padding: 12px 8px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #2c3e50;
+        }
+        
+        .grade-column {
+            width: 80px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .criteria-column {
+            width: 200px;
+        }
+        
+        td {
+            padding: 10px 8px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+            line-height: 1.4;
+        }
+        
+        .grade-80 { background-color: #d5f4e6; }
+        .grade-70 { background-color: #e8f5e8; }
+        .grade-60 { background-color: #f0f8f0; }
+        .grade-50 { background-color: #fff8dc; }
+        .grade-40 { background-color: #ffe4e1; }
+        .grade-20 { background-color: #ffcccb; }
+        .grade-0 { background-color: #ffb6c1; }
+        
+        .criteria-cell {
+            background-color: #ecf0f1;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .descriptor-text {
+            font-size: 11px;
+            line-height: 1.3;
+        }
+        
+        .strong-point {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        ul {
+            margin: 5px 0;
+            padding-left: 15px;
+        }
+        
+        li {
+            margin-bottom: 3px;
+        }
+        
+        .tips-section {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .tips-section h2 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Student-friendly assessment grid: Sustainable living essay</h1>
+        
+        <div class="grid-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="grade-column">Grade</th>
+                        <th class="criteria-column">Task achievement and critical analysis</th>
+                        <th class="criteria-column">Independent research and sources</th>
+                        <th class="criteria-column">Organisation</th>
+                        <th class="criteria-column">Academic conventions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="grade-80 grade-column">80%+<br><em>Excellent</em></td>
+                        <td class="grade-80 descriptor-text">
+                            <span class="strong-point">Show original thinking:</span>
+                            <ul>
+                                <li>Bring fresh insights and innovative ideas to sustainable living</li>
+                                <li>Challenge assumptions and question commonly accepted ideas</li>
+                                <li>Make sophisticated connections to broader academic concepts</li>
+                                <li>Reveal new perspectives and understanding through creative analysis</li>
+                            </ul>
+                        </td>
+                        <td class="grade-80 descriptor-text">
+                            <span class="strong-point">Go beyond basic sources:</span>
+                            <ul>
+                                <li>Use creative research methods to find unique, high-quality materials</li>
+                                <li>Create new insights by connecting sources in original ways</li>
+                                <li>Show exceptional research independence</li>
+                                <li>Develop independent arguments from source material</li>
+                            </ul>
+                        </td>
+                        <td class="grade-80 descriptor-text">
+                            <span class="strong-point">Use innovative structure:</span>
+                            <ul>
+                                <li>Organise your essay in ways that enhance your argument</li>
+                                <li>Create sophisticated topic sentences with original connections</li>
+                                <li>Go beyond conventional academic formats creatively</li>
+                                <li>Build compelling, logical arguments through structure</li>
+                            </ul>
+                        </td>
+                        <td class="grade-80 descriptor-text">
+                            <span class="strong-point">Master academic conventions:</span>
+                            <ul>
+                                <li>Use academic language naturally and effectively</li>
+                                <li>Integrate sources seamlessly into your writing</li>
+                                <li>Show sophisticated citation skills that strengthen arguments</li>
+                                <li>Demonstrate exceptional accuracy in referencing</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="grade-70 grade-column">70-79%<br><em>Very good</em></td>
+                        <td class="grade-70 descriptor-text">
+                            <span class="strong-point">Analyse effectively:</span>
+                            <ul>
+                                <li>Use established methods to examine issues critically</li>
+                                <li>Challenge some assumptions and evaluate different perspectives</li>
+                                <li>Make clear connections to relevant academic disciplines</li>
+                                <li>Show comprehensive understanding with clear insights</li>
+                            </ul>
+                        </td>
+                        <td class="grade-70 descriptor-text">
+                            <span class="strong-point">Use strong analytical skills:</span>
+                            <ul>
+                                <li>Evaluate sources systematically within academic frameworks</li>
+                                <li>Synthesise sources effectively to support arguments</li>
+                                <li>Show good research skills with appropriate academic sources</li>
+                                <li>Develop well-supported arguments through effective integration</li>
+                            </ul>
+                        </td>
+                        <td class="grade-70 descriptor-text">
+                            <span class="strong-point">Organise clearly:</span>
+                            <ul>
+                                <li>Use conventional academic structures effectively</li>
+                                <li>Write coherent paragraphs with clear topic sentences</li>
+                                <li>Use good transitions to connect ideas smoothly</li>
+                                <li>Show well-organised, coherent text throughout</li>
+                            </ul>
+                        </td>
+                        <td class="grade-70 descriptor-text">
+                            <span class="strong-point">Use consistent academic tone:</span>
+                            <ul>
+                                <li>Maintain appropriate register throughout</li>
+                                <li>Reference sources correctly with only minor errors</li>
+                                <li>Write clearly using academic language appropriately</li>
+                                <li>Show strong citation and referencing skills</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="grade-60 grade-column">60-69%<br><em>Good</em></td>
+                        <td class="grade-60 descriptor-text">
+                            <span class="strong-point">Show good understanding:</span>
+                            <ul>
+                                <li>Demonstrate comprehensive knowledge of sustainable living issues</li>
+                                <li>Develop critical thinking and begin to question assumptions</li>
+                                <li>Make some connections to academic concepts (still developing)</li>
+                                <li>Show evidence of independence in assessment</li>
+                            </ul>
+                        </td>
+                        <td class="grade-60 descriptor-text">
+                            <span class="strong-point">Use good research strategies:</span>
+                            <ul>
+                                <li>Find and evaluate sources with evidence of independence</li>
+                                <li>Synthesise information systematically</li>
+                                <li>Include mostly relevant sources with good evaluation</li>
+                                <li>Show originality in research approach</li>
+                            </ul>
+                        </td>
+                        <td class="grade-60 descriptor-text">
+                            <span class="strong-point">Organise information coherently:</span>
+                            <ul>
+                                <li>Arrange ideas logically with clear progression</li>
+                                <li>Write effective paragraphs with clear topic sentences</li>
+                                <li>Use cohesive devices effectively throughout most of essay</li>
+                                <li>Show variety in organisational approaches</li>
+                            </ul>
+                        </td>
+                        <td class="grade-60 descriptor-text">
+                            <span class="strong-point">Generally use academic tone:</span>
+                            <ul>
+                                <li>Maintain appropriate register with occasional lapses</li>
+                                <li>Reference sources well but may have some inaccuracies</li>
+                                <li>Use academic vocabulary appropriately</li>
+                                <li>Show good citation attempts with minor errors</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="grade-50 grade-column">50-59%<br><em>Satisfactory</em></td>
+                        <td class="grade-50 descriptor-text">
+                            <span class="strong-point">Show basic understanding:</span>
+                            <ul>
+                                <li>Demonstrate knowledge of key concepts with clear arguments</li>
+                                <li>Use mainly description (try to analyse more!)</li>
+                                <li>Make basic connections to academic concepts</li>
+                                <li>Show little ability to challenge assumptions</li>
+                            </ul>
+                        </td>
+                        <td class="grade-50 descriptor-text">
+                            <span class="strong-point">Use basic research strategies:</span>
+                            <ul>
+                                <li>Find sources and attempt evaluation</li>
+                                <li>Include fair range of sources with some evaluation attempts</li>
+                                <li>Develop clear arguments, though analysis may be limited</li>
+                                <li>Show basic attempts to relate sources to question</li>
+                            </ul>
+                        </td>
+                        <td class="grade-50 descriptor-text">
+                            <span class="strong-point">Organise adequately:</span>
+                            <ul>
+                                <li>Structure essay reasonably well, though may lack overall progression</li>
+                                <li>Use topic sentences inconsistently</li>
+                                <li>Use basic linking but may have gaps in coherence</li>
+                                <li>Show some organisation but may over-use cohesive devices</li>
+                            </ul>
+                        </td>
+                        <td class="grade-50 descriptor-text">
+                            <span class="strong-point">Attempt academic tone:</span>
+                            <ul>
+                                <li>Try to use academic language but may have inappropriate language</li>
+                                <li>Make citation attempts but may have errors or omissions</li>
+                                <li>Show some academic awareness but inconsistently applied</li>
+                                <li>Struggle with paraphrasing - may have weak attempts</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="grade-40 grade-column">40-49%<br><em>Below standard</em></td>
+                        <td class="grade-40 descriptor-text">
+                            <span class="strong-point">Show limited understanding:</span>
+                            <ul>
+                                <li>Demonstrate basic knowledge but minimal connection to research question</li>
+                                <li>Accept information uncritically - need to question more</li>
+                                <li>Show minimal analysis - focus mainly on description</li>
+                                <li>Show limited ability to challenge assumptions</li>
+                            </ul>
+                        </td>
+                        <td class="grade-40 descriptor-text">
+                            <span class="strong-point">Use basic source identification:</span>
+                            <ul>
+                                <li>Find some sources but with minimal evaluation</li>
+                                <li>Include limited or unreliable sources</li>
+                                <li>Develop basic arguments but lack detailed support</li>
+                                <li>Show very little analysis with ideas difficult to identify</li>
+                            </ul>
+                        </td>
+                        <td class="grade-40 descriptor-text">
+                            <span class="strong-point">Show some organisation:</span>
+                            <ul>
+                                <li>Present information with basic structure but lacks clear progression</li>
+                                <li>Use unclear or absent topic sentences</li>
+                                <li>Overuse or underuse linking words inappropriately</li>
+                                <li>Show limited effectiveness in paragraph development</li>
+                            </ul>
+                        </td>
+                        <td class="grade-40 descriptor-text">
+                            <span class="strong-point">Show limited academic awareness:</span>
+                            <ul>
+                                <li>Frequently use inappropriate language for academic context</li>
+                                <li>Struggle with citations - significant errors or plagiarism issues</li>
+                                <li>Need to develop academic conventions significantly</li>
+                                <li>Show weak paraphrasing with significant lifting</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="grade-20 grade-column">20-40%<br><em>Poor</em></td>
+                        <td class="grade-20 descriptor-text">
+                            <span class="strong-point">Show very little understanding:</span>
+                            <ul>
+                                <li>Demonstrate minimal grasp of main concepts</li>
+                                <li>Lack critical thinking - unable to evaluate information</li>
+                                <li>Miss research focus - content may be irrelevant</li>
+                                <li>Show no clear disciplinary connection</li>
+                            </ul>
+                        </td>
+                        <td class="grade-20 descriptor-text">
+                            <span class="strong-point">Use very limited sources:</span>
+                            <ul>
+                                <li>Include few or no appropriate academic sources</li>
+                                <li>Show no source evaluation - accept all information</li>
+                                <li>Lack clear arguments - ideas difficult to identify</li>
+                                <li>Show little or no analysis attempted</li>
+                            </ul>
+                        </td>
+                        <td class="grade-20 descriptor-text">
+                            <span class="strong-point">Lack logical organisation:</span>
+                            <ul>
+                                <li>Present information without clear structure</li>
+                                <li>Use poor paragraph structure with no clear topic sentences</li>
+                                <li>Use only basic connectors like "first," "then," "after"</li>
+                                <li>Show no effective paragraph development</li>
+                            </ul>
+                        </td>
+                        <td class="grade-20 descriptor-text">
+                            <span class="strong-point">Show no academic awareness:</span>
+                            <ul>
+                                <li>Writing inappropriate for academic context</li>
+                                <li>Lack citation skills - no proper referencing</li>
+                                <li>Require fundamental improvement in academic writing</li>
+                                <li>Show unacceptable academic style and conventions</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="grade-0 grade-column">0-20%<br><em>Unacceptable</em></td>
+                        <td class="grade-0 descriptor-text">
+                            <span class="strong-point">Show no understanding:</span>
+                            <ul>
+                                <li>Content not relevant to research question</li>
+                                <li>Lack any critical thinking or analytical engagement</li>
+                                <li>Miss all academic requirements</li>
+                                <li>Show no evidence of academic content</li>
+                            </ul>
+                        </td>
+                        <td class="grade-0 descriptor-text">
+                            <span class="strong-point">Use no appropriate sources:</span>
+                            <ul>
+                                <li>Show no evidence of research or source evaluation</li>
+                                <li>Make no attempt to evaluate or synthesise information</li>
+                                <li>Provide content barely related to the task</li>
+                                <li>Show no clear position or argument</li>
+                            </ul>
+                        </td>
+                        <td class="grade-0 descriptor-text">
+                            <span class="strong-point">Fail to organise:</span>
+                            <ul>
+                                <li>Show no logical structure or clear progression</li>
+                                <li>Lack paragraph skills - no effective structure</li>
+                                <li>Use very limited linking words</li>
+                                <li>Show no evidence of organisational planning</li>
+                            </ul>
+                        </td>
+                        <td class="grade-0 descriptor-text">
+                            <span class="strong-point">Unacceptable for academic context:</span>
+                            <ul>
+                                <li>Writing does not meet basic academic standards</li>
+                                <li>Show no academic conventions or citation skills</li>
+                                <li>Require complete redevelopment of academic writing</li>
+                                <li>Need to start again with fundamental skills</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="tips-section">
+            <h2>Quick tips for success</h2>
+            <p><strong>To reach higher grades:</strong></p>
+            <ul>
+                <li><strong>Be original:</strong> Don't just repeat what you've read - add your own insights and perspectives</li>
+                <li><strong>Question everything:</strong> Challenge assumptions and explore different viewpoints in your analysis</li>
+                <li><strong>Use diverse sources:</strong> Go beyond basic Google searches to find quality academic materials</li>
+                <li><strong>Structure creatively:</strong> Think about how your organisation can enhance and strengthen your argument</li>
+                <li><strong>Practice academic writing:</strong> Learn to integrate sources smoothly and cite accurately</li>
+            </ul>
+            
+            <p><strong>Remember:</strong> The difference between grade levels often comes down to depth of analysis, originality of thinking, and sophistication of academic writing skills. Focus on developing these areas to improve your performance!</p>
+        </div>
+    </div>
+</body>
+</html>
