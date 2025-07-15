@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EAPR Writing Mark Scheme - Excel Format</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f8f0;
+        }
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2d5a2d;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .download-info {
+            background-color: #e8f5e8;
+            border: 1px solid #c3e6c3;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .excel-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 11px;
+            font-family: 'Calibri', Arial, sans-serif;
+        }
+        .excel-table th, .excel-table td {
+            border: 1px solid #2d5a2d;
+            padding: 6px;
+            text-align: left;
+            vertical-align: top;
+        }
+        .excel-table th {
+            background-color: #4a7c4a;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            font-size: 12px;
+        }
+        .level-cell {
+            background-color: #d4edda;
+            font-weight: bold;
+            text-align: center;
+            width: 100px;
+            font-size: 10px;
+        }
+        .criterion-cell {
+            background-color: #f8fff8;
+            font-size: 10px;
+            line-height: 1.3;
+            width: 22%;
+        }
+        .sub-criterion {
+            margin-bottom: 8px;
+        }
+        .sub-criterion:last-child {
+            margin-bottom: 0;
+        }
+        .scoring-row {
+            background-color: #e8f5e8;
+            border-top: 3px solid #2d5a2d;
+        }
+        .scoring-row th {
+            background-color: #5a8a5a;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            font-size: 11px;
+        }
+        .scoring-row td {
+            background-color: #f0f8f0;
+            text-align: center;
+            font-weight: bold;
+            font-size: 11px;
+        }
+        .score-input-cell {
+            background-color: #ffffff;
+            border: 2px solid #4a7c4a;
+            width: 80px;
+            text-align: center;
+        }
+        .total-row {
+            background-color: #c3e6c3;
+            border-top: 3px solid #2d5a2d;
+        }
+        .total-row th {
+            background-color: #2d5a2d;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            font-size: 12px;
+        }
+        .total-row td {
+            background-color: #e8f5e8;
+            text-align: center;
+            font-weight: bold;
+            font-size: 12px;
+            border: 2px solid #2d5a2d;
+        }
+        .download-btn {
+            background-color: #4a7c4a;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        .download-btn:hover {
+            background-color: #2d5a2d;
+        }
+        .level-spacing {
+            line-height: 1.4;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>EAP with Research Project - Writing Assessment Mark Scheme</h1>
+        
+        <div class="download-info">
+            <strong>Excel Export:</strong> This layout exactly matches how it will appear in Excel with integrated scoring and automatic calculations.
+            <br><br>
+            <button class="download-btn" onclick="exportToExcel()">Download Excel File</button>
+        </div>
+
+        <table class="excel-table">
+            <thead>
+                <tr>
+                    <th>Level</th>
+                    <th>Task achievement and critical analysis</th>
+                    <th>Independent research and sources</th>
+                    <th>Organisation</th>
+                    <th>Academic conventions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="level-cell">
+                        <div class="level-spacing">IELTS 8.5-9.0 (85-100%)</div>
+                    </td>
+                    <td class="criterion-cell">
+                        <div class="sub-criterion"><strong>a)</strong> Demonstrates original thinking and innovative approaches to sustainable living topic with sophisticated disciplinary connection that goes beyond conventional frameworks</div>
+                        <div class="sub-criterion"><strong>b)</strong> Shows original insights and innovative critical thinking. Consistently challenges assumptions with sophisticated questioning that reveals new perspectives and understanding</div>
+                    </td>
+                    <td class="criterion-cell">
+                        <div class="sub-criterion"><strong>a)</strong> Shows innovative approaches to source identification and evaluation, going beyond conventional academic sources to demonstrate sophisticated research independence</div>
+                        <div class="sub-criterion"><strong>b)</strong> Demonstrates original synthesis that creates new insights by connecting sources in innovative ways. Shows exceptional ability to develop independent arguments from source material</div>
+                    </td>
+                    <td class="criterion-cell">
+                        <div class="sub-criterion"><strong>a)</strong> Shows innovative organisational approaches that enhance argument development. Uses sophisticated structural patterns that go beyond conventional academic formats</div>
+                        <div class="sub-criterion"><strong>b)</strong> Demonstrates innovative paragraph development with sophisticated topic sentences that create original connections and insights throughout</div>
+                    </td>
+                    <td class="criterion-cell">
+                        <div class="sub-criterion"><strong>a)</strong> Shows sophisticated command of academic conventions with innovative use of register and tone that enhances argument effectiveness</div>
+                        <div class="sub-criterion"><strong>b)</strong> Demonstrates innovative integration of sources that goes beyond conventional citation to create seamless argument development with exceptional accuracy</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="level-cell">
+                        <div class="level-spacing">IELTS 7.5-8.0 (70-84%)</div>
+                    </td>
+                    <td class="criterion-cell">
+                        <div class="sub-criterion"><strong>a)</strong> Shows strong analytical skills within conventional frameworks. Demonstrates comprehensive understanding of sustainable living topic with clear disciplinary connection</div>
+                        <div class="sub-criterion"><strong>b)</strong> Demonstrates strong analytical skills with effective critical and questioning approach. Challenges assumptions and evaluates information with clear insight using established analytical methods</div>
+                    </td>
+                    <td class="criterion-cell">
+                        <div class="sub-criterion"><strong>a)</strong> Demonstrates strong analytical skills in source identification and evaluation within conventional academic research frameworks</div>
+                        <div class="sub-criterion"><strong>b)</strong> Shows strong synthesis and application of sources using established academic methods. Develops well-supported arguments through effective source integration</div>
+                    </td>
+                    <td class="criterion-cell">
+                        <div class="sub-criterion"><strong>a)</strong> Uses strong organisational skills within conventional academic structures. Produces well-organised, coherent text with effective use of organisational patterns</div>
+                        <div class="sub-criterion"><strong>b)</strong> Demonstrates strong paragraph development with effective topic sentences that introduce themes clearly using conventional academic approaches</div>
+                    </td>
+                    <td class="criterion-cell">
+                        <div class="sub-criterion"><strong>a)</strong> Demonstrates strong command of academic conventions with consistent register and tone throughout using established academic practices</div>
+                        <div class="sub-criterion"><strong>b)</strong> Shows strong citation and referencing skills with clear quotes/paraphrases/summaries. References and citations generally accurate with only occasional minor errors</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="level-cell">
+                        <div class="level-spacing">IELTS 6.5-7.0 (60-69%)</div>
+                    </td>
+                    <td class="criterion-cell">
+                        <div class="sub-criterion"><strong>a)</strong> Very good understanding of sustainable living topic with developing disciplinary connection. Makes comprehensive assessment of issues with evidence of independence</div>
+                        <div class="sub-criterion"><strong>b)</strong> Shows developing critical and questioning approach to information with emerging analytical thinking. Demonstrates developing ability to challenge assumptions, though analysis may be superficial at times</div>
+                    </td>
+                    <td class="criterion-cell">
+                        <div class="sub-criterion"><strong>a)</strong> Very good strategies for source identification and critical evaluation with evidence of originality and independence in research approach</div>
+                        <div class="sub-criterion"><strong>b)</strong> Very good synthesis and application. Inclusion of mostly relevant sources with evidence of ability to evaluate and synthesise information systematically</div>
+                    </td>
+                    <td class="criterion-cell">
+                        <div class="sub-criterion"><strong>a)</strong> Very good organisation with information and ideas arranged coherently. Clear overall progression using variety of cohesive devices effectively</div>
+                        <div class="sub-criterion"><strong>b)</strong> Very good topic sentences with clear paragraph focus and effective development throughout most of the essay</div>
+                    </td>
+                    <td class="criterion-cell">
+                        <div class="sub-criterion"><strong>a)</strong> Academic register and tone generally realised; uses academic structures and vocabulary appropriately, though may be occasional inappropriacy</div>
+                        <div class="sub-criterion"><strong>b)</strong> Very good citation and referencing. Uses paraphrase/summary and direct quotation with only minor errors. Citations included but may lack accuracy/clarity</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="level-cell">
+                        <div class="level-spacing">IELTS 5.5-6.0 (40-59%)</div>
+                    </td>
+                    <td class="criterion-cell">
+                        <div class="sub-criterion"><strong>a)</strong> Good understanding of sustainable living topic with basic disciplinary connection. Demonstrates understanding of key concepts with clear arguments and basic evaluation</div>
+                        <div class="sub-criterion"><strong>b)</strong> Limited critical and questioning approach evident with mainly descriptive rather than analytical approach. Shows little ability to challenge assumptions</div>
+                    </td>
+                    <td class="criterion-cell">
+                        <div class="sub-criterion"><strong>a)</strong> Good strategies for source identification and evaluation with clear arguments and basic source evaluation attempts</div>
+                        <div class="sub-criterion"><strong>b)</strong> Good synthesis and application. Fair range of source material consulted with attempts to evaluate information and develop clear arguments</div>
+                    </td>
+                    <td class="criterion-cell">
+                        <div class="sub-criterion"><strong>a)</strong> Good organisation. Text generally well-organised and coherent, using linking words and cohesive devices, although there may be some gaps</div>
+                        <div class="sub-criterion"><strong>b)</strong> Good use of topic sentences, though may be inconsistent. Generally effective paragraph development with some weak areas</div>
+                    </td>
+                    <td class="criterion-cell">
+                        <div class="sub-criterion"><strong>a)</strong> Academic register and tone sometimes realised; attempts to use academic structures and vocabulary, but may be some inaccuracies or inappropriate language</div>
+                        <div class="sub-criterion"><strong>b)</strong> Good citation and referencing attempts. Paraphrases/summarises relevant content, though with errors or instances of lifting. Referencing attempted but with omissions</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="level-cell">
+                        <div class="level-spacing">IELTS 4.5-5.0 (30-39%)</div>
+                    </td>
+                    <td class="criterion-cell">
+                        <div class="sub-criterion"><strong>a)</strong> Adequate understanding of sustainable living topic with minimal disciplinary connection. Demonstrates basic knowledge with adequate attempt to relate to research question</div>
+                        <div class="sub-criterion"><strong>b)</strong> No evidence of critical or questioning approach evident. Accepts information without evaluation or challenge. No evidence of analytical thinking</div>
+                    </td>
+                    <td class="criterion-cell">
+                        <div class="sub-criterion"><strong>a)</strong> Adequate strategies for source identification with minimal evaluation. Demonstrates basic knowledge and attempt to relate to the question</div>
+                        <div class="sub-criterion"><strong>b)</strong> Adequate synthesis and application. Sources may be limited or of limited reliability. Very little analysis attempted. Develops basic arguments</div>
+                    </td>
+                    <td class="criterion-cell">
+                        <div class="sub-criterion"><strong>a)</strong> Adequate organisation. Presents information with some organisation but may lack overall progression. Cohesive devices may be inadequate or over-used</div>
+                        <div class="sub-criterion"><strong>b)</strong> Adequate topic sentences but may be unclear or absent. Basic paragraph development with limited effectiveness</div>
+                    </td>
+                    <td class="criterion-cell">
+                        <div class="sub-criterion"><strong>a)</strong> Limited awareness of appropriate academic register and tone; repeated use of inappropriate language that affects academic credibility</div>
+                        <div class="sub-criterion"><strong>b)</strong> Adequate citation attempts. Some attempt at paraphrase/summary but largely unsuccessful with weak paraphrasing and significant lifting. References missing or with significant errors</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="level-cell">
+                        <div class="level-spacing">IELTS 3.5-4.0 (10-29%)</div>
+                    </td>
+                    <td class="criterion-cell">
+                        <div class="sub-criterion"><strong>a)</strong> Limited understanding of sustainable living topic with no clear disciplinary connection. Demonstrates very little understanding of main concepts</div>
+                        <div class="sub-criterion"><strong>b)</strong> No critical or questioning approach evident. Unable to evaluate or challenge information. No understanding of need to question assumptions</div>
+                    </td>
+                    <td class="criterion-cell">
+                        <div class="sub-criterion"><strong>a)</strong> Limited strategies for source identification with no evaluation. Very little understanding of main concepts relevant to the research question</div>
+                        <div class="sub-criterion"><strong>b)</strong> Limited synthesis and application. No or very limited sources used with little or no analysis. Ideas difficult to identify and may be irrelevant</div>
+                    </td>
+                    <td class="criterion-cell">
+                        <div class="sub-criterion"><strong>a)</strong> Limited organisation. Information not arranged coherently with no clear progression. Uses some basic cohesive devices but may be inaccurate or repetitive</div>
+                        <div class="sub-criterion"><strong>b)</strong> Limited evidence of effective topic sentences. Poor paragraph development with unclear structure</div>
+                    </td>
+                    <td class="criterion-cell">
+                        <div class="sub-criterion"><strong>a)</strong> Very limited or no awareness of appropriate academic register and tone. Lacks understanding of academic writing conventions</div>
+                        <div class="sub-criterion"><strong>b)</strong> Limited citation and referencing. Lacks in all aspects of academic style and conventions - unacceptable as piece of academic writing</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="level-cell">
+                        <div class="level-spacing">IELTS under 3.0 (under 10%)</div>
+                    </td>
+                    <td class="criterion-cell">
+                        <div class="sub-criterion"><strong>a)</strong> Very limited understanding of sustainable living topic. Not relevant to the research question with no evidence of academic content</div>
+                        <div class="sub-criterion"><strong>b)</strong> No evidence of critical thinking or questioning approach. Unable to engage with information in any analytical way</div>
+                    </td>
+                    <td class="criterion-cell">
+                        <div class="sub-criterion"><strong>a)</strong> Very limited strategies for source identification. Not relevant to the title with no evidence of academic content or source evaluation</div>
+                        <div class="sub-criterion"><strong>b)</strong> Very limited synthesis and application. No analysis or evaluation attempted. Response barely related to task with no clear position</div>
+                    </td>
+                    <td class="criterion-cell">
+                        <div class="sub-criterion"><strong>a)</strong> Very limited organisation. Fails to organise information logically. Uses only most important connecting words ("first", "then", "after", "later")</div>
+                        <div class="sub-criterion"><strong>b)</strong> Very limited or no evidence of topic sentences. No effective paragraph structure evident</div>
+                    </td>
+                    <td class="criterion-cell">
+                        <div class="sub-criterion"><strong>a)</strong> Lacks in all aspects of academic style and conventions - unacceptable as piece of academic writing</div>
+                        <div class="sub-criterion"><strong>b)</strong> Very limited citation and referencing. Lacks in all aspects of academic style and conventions - unacceptable as piece of academic writing</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="level-cell">U</td>
+                    <td colspan="4" style="text-align: center; font-style: italic;">No attempt made, or unable to assess criteria due to the amount of lifting from the source texts</td>
+                </tr>
+                <tr class="scoring-row">
+                    <th>Marker Score</th>
+                    <th>Task Achievement & Critical Analysis</th>
+                    <th>Independent Research & Sources</th>
+                    <th>Organisation</th>
+                    <th>Academic Conventions</th>
+                </tr>
+                <tr class="scoring-row">
+                    <td class="score-input-cell">Enter Score (0-10)</td>
+                    <td class="score-input-cell"></td>
+                    <td class="score-input-cell"></td>
+                    <td class="score-input-cell"></td>
+                    <td class="score-input-cell"></td>
+                </tr>
+                <tr class="total-row">
+                    <th>Raw Score Total</th>
+                    <th>Percentage</th>
+                    <th>IELTS Level</th>
+                    <th colspan="2">Comments</th>
+                </tr>
+                <tr class="total-row">
+                    <td class="score-input-cell">Formula: =SUM(B11:E11)</td>
+                    <td class="score-input-cell">Formula: =(A13/40)*100</td>
+                    <td class="score-input-cell">Formula: =IF(B13>=85,"8.5-9.0",IF(B13>=70,"7.5-8.0",IF(B13>=60,"6.5-7.0",IF(B13>=40,"5.5-6.0",IF(B13>=30,"4.5-5.0",IF(B13>=10,"3.5-4.0",IF(B13>0,"under 3.0","U")))))))</td>
+                    <td colspan="2" style="background-color: #f0f8f0; text-align: left;"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function exportToExcel() {
+            // Create a new workbook
+            const wb = XLSX.utils.book_new();
+            
+            // Create the main mark scheme data
+            const markSchemeData = [
+                // Header row
+                ['Level', 'Task achievement and critical analysis', 'Independent research and sources', 'Organisation', 'Academic conventions'],
+                
+                // IELTS 8.5-9.0
+                ['IELTS 8.5-9.0 (85-100%)', 
+                 'a) Demonstrates original thinking and innovative approaches to sustainable living topic with sophisticated disciplinary connection that goes beyond conventional frameworks\n\nb) Shows original insights and innovative critical thinking. Consistently challenges assumptions with sophisticated questioning that reveals new perspectives and understanding',
+                 'a) Shows innovative approaches to source identification and evaluation, going beyond conventional academic sources to demonstrate sophisticated research independence\n\nb) Demonstrates original synthesis that creates new insights by connecting sources in innovative ways. Shows exceptional ability to develop independent arguments from source material',
+                 'a) Shows innovative organisational approaches that enhance argument development. Uses sophisticated structural patterns that go beyond conventional academic formats\n\nb) Demonstrates innovative paragraph development with sophisticated topic sentences that create original connections and insights throughout',
+                 'a) Shows sophisticated command of academic conventions with innovative use of register and tone that enhances argument effectiveness\n\nb) Demonstrates innovative integration of sources that goes beyond conventional citation to create seamless argument development with exceptional accuracy'],
+                
+                // IELTS 7.5-8.0
+                ['IELTS 7.5-8.0 (70-84%)',
+                 'a) Shows strong analytical skills within conventional frameworks. Demonstrates comprehensive understanding of sustainable living topic with clear disciplinary connection\n\nb) Demonstrates strong analytical skills with effective critical and questioning approach. Challenges assumptions and evaluates information with clear insight using established analytical methods',
+                 'a) Demonstrates strong analytical skills in source identification and evaluation within conventional academic research frameworks\n\nb) Shows strong synthesis and application of sources using established academic methods. Develops well-supported arguments through effective source integration',
+                 'a) Uses strong organisational skills within conventional academic structures. Produces well-organised, coherent text with effective use of organisational patterns\n\nb) Demonstrates strong paragraph development with effective topic sentences that introduce themes clearly using conventional academic approaches',
+                 'a) Demonstrates strong command of academic conventions with consistent register and tone throughout using established academic practices\n\nb) Shows strong citation and referencing skills with clear quotes/paraphrases/summaries. References and citations generally accurate with only occasional minor errors'],
+                
+                // IELTS 6.5-7.0
+                ['IELTS 6.5-7.0 (60-69%)',
+                 'a) Very good understanding of sustainable living topic with developing disciplinary connection. Makes comprehensive assessment of issues with evidence of independence\n\nb) Shows developing critical and questioning approach to information with emerging analytical thinking. Demonstrates developing ability to challenge assumptions, though analysis may be superficial at times',
+                 'a) Very good strategies for source identification and critical evaluation with evidence of originality and independence in research approach\n\nb) Very good synthesis and application. Inclusion of mostly relevant sources with evidence of ability to evaluate and synthesise information systematically',
+                 'a) Very good organisation with information and ideas arranged coherently. Clear overall progression using variety of cohesive devices effectively\n\nb) Very good topic sentences with clear paragraph focus and effective development throughout most of the essay',
+                 'a) Academic register and tone generally realised; uses academic structures and vocabulary appropriately, though may be occasional inappropriacy\n\nb) Very good citation and referencing. Uses paraphrase/summary and direct quotation with only minor errors. Citations included but may lack accuracy/clarity'],
+                
+                // IELTS 5.5-6.0
+                ['IELTS 5.5-6.0 (40-59%)',
+                 'a) Good understanding of sustainable living topic with basic disciplinary connection. Demonstrates understanding of key concepts with clear arguments and basic evaluation\n\nb) Limited critical and questioning approach evident with mainly descriptive rather than analytical approach. Shows little ability to challenge assumptions',
+                 'a) Good strategies for source identification and evaluation with clear arguments and basic source evaluation attempts\n\nb) Good synthesis and application. Fair range of source material consulted with attempts to evaluate information and develop clear arguments',
+                 'a) Good organisation. Text generally well-organised and coherent, using linking words and cohesive devices, although there may be some gaps\n\nb) Good use of topic sentences, though may be inconsistent. Generally effective paragraph development with some weak areas',
+                 'a) Academic register and tone sometimes realised; attempts to use academic structures and vocabulary, but may be some inaccuracies or inappropriate language\n\nb) Good citation and referencing attempts. Paraphrases/summarises relevant content, though with errors or instances of lifting. Referencing attempted but with omissions'],
+                
+                // IELTS 4.5-5.0
+                ['IELTS 4.5-5.0 (30-39%)',
+                 'a) Adequate understanding of sustainable living topic with minimal disciplinary connection. Demonstrates basic knowledge with adequate attempt to relate to research question\n\nb) No evidence of critical or questioning approach evident. Accepts information without evaluation or challenge. No evidence of analytical thinking',
+                 'a) Adequate strategies for source identification with minimal evaluation. Demonstrates basic knowledge and attempt to relate to the question\n\nb) Adequate synthesis and application. Sources may be limited or of limited reliability. Very little analysis attempted. Develops basic arguments',
+                 'a) Adequate organisation. Presents information with some organisation but may lack overall progression. Cohesive devices may be inadequate or over-used\n\nb) Adequate topic sentences but may be unclear or absent. Basic paragraph development with limited effectiveness',
+                 'a) Limited awareness of appropriate academic register and tone; repeated use of inappropriate language that affects academic credibility\n\nb) Adequate citation attempts. Some attempt at paraphrase/summary but largely unsuccessful with weak paraphrasing and significant lifting. References missing or with significant errors'],
+                
+                // IELTS 3.5-4.0
+                ['IELTS 3.5-4.0 (10-29%)',
+                 'a) Limited understanding of sustainable living topic with no clear disciplinary connection. Demonstrates very little understanding of main concepts\n\nb) No critical or questioning approach evident. Unable to evaluate or challenge information. No understanding of need to question assumptions',
+                 'a) Limited strategies for source identification with no evaluation. Very little understanding of main concepts relevant to the research question\n\nb) Limited synthesis and application. No or very limited sources used with little or no analysis. Ideas difficult to identify and may be irrelevant',
+                 'a) Limited organisation. Information not arranged coherently with no clear progression. Uses some basic cohesive devices but may be inaccurate or repetitive\n\nb) Limited evidence of effective topic sentences. Poor paragraph development with unclear structure',
+                 'a) Very limited or no awareness of appropriate academic register and tone. Lacks understanding of academic writing conventions\n\nb) Limited citation and referencing. Lacks in all aspects of academic style and conventions - unacceptable as piece of academic writing'],
+                
+                // IELTS under 3.0
+                ['IELTS under 3.0 (under 10%)',
+                 'a) Very limited understanding of sustainable living topic. Not relevant to the research question with no evidence of academic content\n\nb) No evidence of critical thinking or questioning approach. Unable to engage with information in any analytical way',
+                 'a) Very limited strategies for source identification. Not relevant to the title with no evidence of academic content or source evaluation\n\nb) Very limited synthesis and application. No analysis or evaluation attempted. Response barely related to task with no clear position',
+                 'a) Very limited organisation. Fails to organise information logically. Uses only most important connecting words ("first", "then", "after", "later")\n\nb) Very limited or no evidence of topic sentences. No effective paragraph structure evident',
+                 'a) Lacks in all aspects of academic style and conventions - unacceptable as piece of academic writing\n\nb) Very limited citation and referencing. Lacks in all aspects of academic style and conventions - unacceptable as piece of academic writing'],
+                
+                // U Grade
+                ['U', 'No attempt made, or unable to assess criteria due to the amount of lifting from the source texts', '', '', ''],
+                
+                // Scoring section
+                ['Marker Score', 'Task Achievement & Critical Analysis', 'Independent Research & Sources', 'Organisation', 'Academic Conventions'],
+                ['Enter Score (0-10)', '', '', '', ''],
+                ['Raw Score Total', 'Percentage', 'IELTS Level', 'Comments', ''],
+                ['=SUM(B11:E11)', '=(A13/40)*100', '=IF(B13>=85,"8.5-9.0",IF(B13>=70,"7.5-8.0",IF(B13>=60,"6.5-7.0",IF(B13>=40,"5.5-6.0",IF(B13>=30,"4.5-5.0",IF(B13>=10,"3.5-4.0",IF(B13>0,"under 3.0","U"))))))', '', '']
+            ];
+            
+            // Convert to worksheet
+            const ws = XLSX.utils.aoa_to_sheet(markSchemeData);
+            
+            // Set column widths
+            ws['!cols'] = [
+                { wch: 15 },  // Level column
+                { wch: 45 },  // Task achievement
+                { wch: 45 },  // Independent research
+                { wch: 45 },  // Organisation
+                { wch: 45 }   // Academic conventions
+            ];
+            
+            // Set row heights for better readability
+            ws['!rows'] = [];
+            for (let i = 0; i < markSchemeData.length; i++) {
+                if (i >= 1 && i <= 9) { // Main rubric rows
+                    ws['!rows'][i] = { hpx: 120 }; // Height in pixels
+                } else {
+                    ws['!rows'][i] = { hpx: 25 };
+                }
+            }
+            
+            // Add the worksheet to workbook
+            XLSX.utils.book_append_sheet(wb, ws, 'EAPR Writing Mark Scheme');
+            
+            // Save the file
+            XLSX.writeFile(wb, 'EAPR_Writing_Mark_Scheme_Green.xlsx');
+        }
+    </script>
+</body>
+</html>
